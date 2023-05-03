@@ -1,6 +1,9 @@
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    kotlin("plugin.serialization") version "1.6.10"
+
 }
 
 android {
@@ -13,11 +16,13 @@ android {
         targetSdk = 33
         versionCode = 1
         versionName = "1.0"
+        buildFeatures.buildConfig = true
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
             useSupportLibrary = true
         }
+        buildConfigField("String", "API_KEY","\"7de6160d-4534-4d15-9db6-dc0ea468d6e3\"")
     }
 
     buildTypes {
@@ -67,5 +72,22 @@ dependencies {
     debugImplementation(libs.uiTooling)
     debugImplementation(libs.uiTestManifest)
     implementation(libs.navigation.compose)
+    implementation(libs.koin.core)
+    implementation(libs.koin.android)
+    implementation ("io.insert-koin:koin-androidx-compose:3.4.0")
+    implementation("io.ktor:ktor-client-okhttp:2.3.0")
+    implementation(libs.ktor.client.core)
+    implementation(libs.ktor.client.cio)
+    implementation ("io.ktor:ktor-client-json:2.3.0")
+    implementation ("io.ktor:ktor-client-serialization:2.3.0")
+    implementation("io.ktor:ktor-serialization-kotlinx-json:2.3.0")
+    implementation ("io.ktor:ktor-client-logging:2.3.0")
+    implementation("io.ktor:ktor-server-cors:2.3.0")
+    implementation ("io.ktor:ktor-client-gson:2.3.0")
+    implementation("io.ktor:ktor-client-content-negotiation:2.3.0")
+    implementation ("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.0" )
+
+
+
 
 }
