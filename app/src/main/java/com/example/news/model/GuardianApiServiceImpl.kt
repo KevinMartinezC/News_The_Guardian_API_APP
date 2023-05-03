@@ -14,7 +14,7 @@ import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
 
 class GuardianApiServiceImpl : GuardianApiService {
-    val client: HttpClient by lazy { createClient()}
+    private val client: HttpClient by lazy { createClient()}
 
     private fun createClient(): HttpClient{
         return HttpClient(OkHttp){
@@ -35,13 +35,13 @@ class GuardianApiServiceImpl : GuardianApiService {
         }
     }
 
-    private val json = Json { ignoreUnknownKeys = true }
-
     override suspend fun searchArticles(query: String): ApiResponse {
         val url = "https://content.guardianapis.com/search?q=$query&api-key=7de6160d-4534-4d15-9db6-dc0ea468d6e3"
        return client.get(url).body()
     }
 }
+
+
 suspend fun testSearchArticles() {
     val guardianApiService = GuardianApiServiceImpl()
     val query = "technology"

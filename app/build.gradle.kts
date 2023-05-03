@@ -16,14 +16,12 @@ android {
         targetSdk = 33
         versionCode = 1
         versionName = "1.0"
-        buildFeatures.buildConfig = true
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
             useSupportLibrary = true
         }
-        buildConfigField("String", "API_KEY","\"7de6160d-4534-4d15-9db6-dc0ea468d6e3\"")
-    }
+
 
     buildTypes {
         release {
@@ -90,4 +88,4 @@ dependencies {
 
 
 
-}
+}}
