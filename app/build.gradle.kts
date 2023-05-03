@@ -66,5 +66,6 @@ dependencies {
     androidTestImplementation(libs.uiTestJUnit4)
     debugImplementation(libs.uiTooling)
     debugImplementation(libs.uiTestManifest)
+    implementation(libs.navigation.compose)
 
 }
