@@ -1,8 +1,7 @@
-package com.example.news.model.network
+package com.example.news.data.network
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import kotlinx.coroutines.delay
 
 class GuardianPagingSource(
     private val guardianApiService: GuardianApiService,
@@ -13,7 +12,6 @@ class GuardianPagingSource(
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Article> {
         val page = params.key ?: 1
         return try {
-            delay(2000)
             val response = guardianApiService.searchArticles(query, filter, page, params.loadSize)
             LoadResult.Page(
                 data = response.response.results,

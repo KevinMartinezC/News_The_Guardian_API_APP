@@ -1,4 +1,4 @@
-package com.example.news.model.network
+package com.example.news.data.network
 
 
 import com.example.news.BuildConfig
@@ -22,7 +22,6 @@ class GuardianApiServiceImpl(private val client: HttpClient) : GuardianApiServic
         }.body()
     }
 }
-
 
 fun HttpRequestBuilder.addCommonParameters(apiKey: String, pageSize: Int) {
     parameter("api-key", apiKey)

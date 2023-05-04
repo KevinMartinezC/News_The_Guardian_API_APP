@@ -7,7 +7,7 @@ import com.example.news.components.search.model.ConstantFilter.TAG_ENVIRONMENT_R
 import com.example.news.components.search.model.ConstantFilter.TAG_POLITICS_BLOG
 import com.example.news.components.search.model.ConstantFilter.TYPE_INTERACTIVE
 import com.example.news.components.search.model.ConstantFilter.TYPE_LIVEBLOG
-import com.example.news.model.network.Filter
+import com.example.news.data.network.Filter
 
 fun generateFilters(): List<Filter> {
     val sections = listOf(SECTION_POLITICS, SECTION_TECHNOLOGY, SECTION_CULTURE)

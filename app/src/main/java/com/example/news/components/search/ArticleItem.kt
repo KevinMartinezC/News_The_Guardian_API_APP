@@ -17,7 +17,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
 import com.example.news.R
-import com.example.news.model.network.Article
+import com.example.news.data.network.Article
 
 @Composable
 fun NewsItem(

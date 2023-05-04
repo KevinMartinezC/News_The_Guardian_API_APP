@@ -1,4 +1,4 @@
-package com.example.news.model.network
+package com.example.news.data.network
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -37,10 +37,3 @@ data class Fields(
     val thumbnail: String?
 )
 
-@Serializable
-data class Filter(
-    val filterName: String,
-    val section: String? = null,
-    val tag: String? = null,
-    val type: String? = null
-)

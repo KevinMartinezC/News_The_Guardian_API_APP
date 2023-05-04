@@ -1,4 +1,4 @@
-package com.example.news.model.network
+package com.example.news.data.network
 
 import kotlinx.serialization.Serializable
 

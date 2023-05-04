@@ -2,11 +2,11 @@ package com.example.news
 
 import android.app.Application
 import com.example.news.components.search.viewmodel.SearchViewModel
-import com.example.news.model.network.GuardianApiService
-import com.example.news.model.network.GuardianApiServiceImpl
-import com.example.news.model.network.HttpClientProvider
-import com.example.news.model.repository.GuardianRepository
-import com.example.news.model.repository.GuardianRepositoryImpl
+import com.example.news.data.network.GuardianApiService
+import com.example.news.data.network.GuardianApiServiceImpl
+import com.example.news.data.network.HttpClientProvider
+import com.example.news.data.repository.GuardianRepository
+import com.example.news.data.repository.GuardianRepositoryImpl
 import io.ktor.client.HttpClient
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.context.GlobalContext.startKoin
