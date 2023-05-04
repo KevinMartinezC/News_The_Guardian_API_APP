@@ -6,9 +6,11 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
@@ -25,21 +27,24 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.paging.LoadState
+import androidx.paging.compose.LazyPagingItems
+import androidx.paging.compose.items
 import com.example.news.R
 import com.example.news.components.search.model.generateFilters
+import com.example.news.model.network.Article
 import com.example.news.model.network.Filter
 import kotlinx.coroutines.launch
 
 @Composable
 fun SearchScreen(
     modifier: Modifier = Modifier,
-    uiState: SearchUiState,
+    articles: LazyPagingItems<Article>,
+    isLoading: Boolean,
     searchArticle: (String, Filter) -> Unit,
 ) {
 
     val query = remember { mutableStateOf("") }
-    val articles = uiState.articles
-    val isLoading = uiState.isLoading
     val coroutineScope = rememberCoroutineScope()
     val selectedFilter = remember { mutableStateOf(Filter("")) }
     val filters = remember { generateFilters() }
@@ -100,11 +105,26 @@ fun SearchScreen(
                 .wrapContentSize(Alignment.Center))
         } else {
             LazyColumn(modifier = Modifier.fillMaxSize()) {
-                items(articles.size) { index ->
-                    val article = articles[index]
-                    NewsItem(article = article)
+                items(articles) { article ->
+                    article?.let {
+                        NewsItem(article = it)
+                    }
+                }
+                articles.apply {
+                    if(loadState.append is LoadState.Loading){
+                        item{
+                            CircularProgressIndicator(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .wrapContentSize(Alignment.Center)
+                                    .padding()
+                            )
+                        }
+                    }
                 }
             }
+
+
         }
     }
 }

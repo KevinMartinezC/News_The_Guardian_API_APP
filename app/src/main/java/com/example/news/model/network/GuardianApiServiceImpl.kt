@@ -9,19 +9,20 @@ import io.ktor.client.request.get
 import io.ktor.client.request.parameter
 
 class GuardianApiServiceImpl(private val client: HttpClient) : GuardianApiService {
-    override suspend fun searchArticles(query: String, filter: Filter): ApiResponse {
+    override suspend fun searchArticles(query: String, filter: Filter, page: Int, pageSize: Int): ApiResponse {
 
         return client.get("https://content.guardianapis.com/search") {
             parameter("q", query)
-            addCommonParameters(BuildConfig.GUARDIAN_API_KEY, 20)
+            addCommonParameters(BuildConfig.GUARDIAN_API_KEY, pageSize)
+            parameter("page", page)
             parameter("show-fields", "thumbnail")
             filter.section?.let { parameter("section", it) }
             filter.tag?.let { parameter("tag", it) }
             filter.type?.let { parameter("type", it) }
-
         }.body()
     }
 }
+
 
 fun HttpRequestBuilder.addCommonParameters(apiKey: String, pageSize: Int) {
     parameter("api-key", apiKey)
