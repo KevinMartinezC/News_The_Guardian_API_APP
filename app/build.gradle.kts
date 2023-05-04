@@ -72,6 +72,7 @@ dependencies {
     implementation(libs.navigation.compose)
     implementation(libs.koin.core)
     implementation(libs.koin.android)
+
     implementation ("io.insert-koin:koin-androidx-compose:3.4.0")
     implementation("io.ktor:ktor-client-okhttp:2.3.0")
     implementation(libs.ktor.client.core)

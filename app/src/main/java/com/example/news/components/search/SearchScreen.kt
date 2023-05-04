@@ -4,28 +4,32 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.example.news.model.Article
-import com.example.news.model.GuardianRepository
 import kotlinx.coroutines.launch
-import org.koin.androidx.compose.get
 
 @Composable
-fun SearchScreen(modifier: Modifier = Modifier) {
-    val guardianRepository: GuardianRepository = get()
+fun SearchScreen(
+    modifier: Modifier = Modifier,
+    uiState: SearchUiState,
+    searchArticle: (String) -> Unit,
+
+) {
     val query = remember { mutableStateOf("") }
-    val articles = remember { mutableStateOf(emptyList<Article>()) }
+    val articles = uiState.articles
+    val isLoading = uiState.isLoading
     val coroutineScope = rememberCoroutineScope()
 
     Column(modifier = modifier) {
@@ -37,16 +41,19 @@ fun SearchScreen(modifier: Modifier = Modifier) {
             keyboardOptions = KeyboardOptions(imeAction = androidx.compose.ui.text.input.ImeAction.Done),
             keyboardActions = KeyboardActions(onDone = {
                 coroutineScope.launch {
-                    val response = guardianRepository.searchArticles(query.value)
-                    articles.value = response.response.results
+                    searchArticle(query.value)
                 }
             }),
             modifier = Modifier.fillMaxWidth()
         )
-
-        LazyColumn(modifier = Modifier.fillMaxSize()) {
-            items(articles.value) { article ->
-                Text(text = article.webTitle, modifier = Modifier.padding(8.dp))
+        if (isLoading) {
+            CircularProgressIndicator(modifier = Modifier.wrapContentSize(Alignment.Center))
+        } else {
+            LazyColumn(modifier = Modifier.fillMaxSize()) {
+                items(articles.size) { index ->
+                    val article = articles[index]
+                    Text(text = article.webTitle, modifier = Modifier.padding(8.dp))
+                }
             }
         }
     }
