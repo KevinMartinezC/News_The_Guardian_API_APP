@@ -11,6 +11,8 @@ android {
     compileSdk = 33
 
     defaultConfig {
+        buildConfigField("String", "GUARDIAN_API_BASE_URL", "\"${project.property("guardianApiBaseUrl")}\"")
+        buildConfigField("String", "GUARDIAN_API_KEY", "\"${project.property("guardianApiKey")}\"")
         applicationId = "com.example.news"
         minSdk = 24
         targetSdk = 33
@@ -24,6 +26,7 @@ android {
 
 
     buildTypes {
+
         release {
             isMinifyEnabled = false
             proguardFiles(
@@ -41,6 +44,8 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
+
     }
     composeOptions {
         kotlinCompilerExtensionVersion = "1.4.3"
@@ -72,7 +77,6 @@ dependencies {
     implementation(libs.navigation.compose)
     implementation(libs.koin.core)
     implementation(libs.koin.android)
-
     implementation ("io.insert-koin:koin-androidx-compose:3.4.0")
     implementation("io.ktor:ktor-client-okhttp:2.3.0")
     implementation(libs.ktor.client.core)
@@ -85,6 +89,8 @@ dependencies {
     implementation ("io.ktor:ktor-client-gson:2.3.0")
     implementation("io.ktor:ktor-client-content-negotiation:2.3.0")
     implementation ("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.0" )
+    implementation(libs.coilCompose)
+
 
 
 

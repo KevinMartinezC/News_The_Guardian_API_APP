@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">News</string>
     <string name="navigation_icon">Navigation Icon</string>
+    <string name="new_image">New Image</string>
 </resources>

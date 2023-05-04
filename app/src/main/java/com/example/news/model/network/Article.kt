@@ -25,5 +25,14 @@ data class Article(
     val webUrl: String,
 
     @SerialName("apiUrl")
-    val apiUrl: String
+    val apiUrl: String,
+
+    @SerialName("fields")
+    val fields: Fields
+)
+
+@Serializable
+data class Fields(
+    @SerialName("thumbnail")
+    val thumbnail: String?
 )

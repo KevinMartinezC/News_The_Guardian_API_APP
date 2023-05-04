@@ -3,7 +3,6 @@ package com.example.news.components.search
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.text.KeyboardActions
@@ -17,7 +16,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.launch
 
 @Composable
@@ -47,14 +45,17 @@ fun SearchScreen(
             modifier = Modifier.fillMaxWidth()
         )
         if (isLoading) {
-            CircularProgressIndicator(modifier = Modifier.wrapContentSize(Alignment.Center))
+            CircularProgressIndicator(modifier = Modifier
+                .fillMaxSize()
+                .wrapContentSize(Alignment.Center))
         } else {
             LazyColumn(modifier = Modifier.fillMaxSize()) {
                 items(articles.size) { index ->
                     val article = articles[index]
-                    Text(text = article.webTitle, modifier = Modifier.padding(8.dp))
+                    NewsItem(article = article)
                 }
             }
+
         }
     }
 }
