@@ -7,6 +7,7 @@ import com.example.news.model.network.GuardianApiServiceImpl
 import com.example.news.model.network.HttpClientProvider
 import com.example.news.model.repository.GuardianRepository
 import com.example.news.model.repository.GuardianRepositoryImpl
+import io.ktor.client.HttpClient
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.context.GlobalContext.startKoin
 import org.koin.dsl.module
@@ -21,8 +22,9 @@ class App : Application() {
 }
 
 val appModule = module {
-    single { HttpClientProvider() }
-    single<GuardianApiService> { GuardianApiServiceImpl(get<HttpClientProvider>().createClient()) }
+    single <HttpClient>{ HttpClientProvider().createClient() }
+
+    single<GuardianApiService> { GuardianApiServiceImpl(get()) }
     single<GuardianRepository> { GuardianRepositoryImpl(get()) }
     viewModel { SearchViewModel(get()) }
 }

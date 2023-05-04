@@ -36,3 +36,11 @@ data class Fields(
     @SerialName("thumbnail")
     val thumbnail: String?
 )
+
+@Serializable
+data class Filter(
+    val filterName: String,
+    val section: String? = null,
+    val tag: String? = null,
+    val type: String? = null
+)

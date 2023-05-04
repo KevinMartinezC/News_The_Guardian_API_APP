@@ -37,8 +37,6 @@ uiTooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "compose"
 uiTestManifest = { module = "androidx.compose.ui:ui-test-manifest", version.ref = "compose" }
 coilCompose = { module = "io.coil-kt:coil-compose", version.ref = "coilComposeVersion" }
 
-
-
 [plugins]
 
 [bundles]
