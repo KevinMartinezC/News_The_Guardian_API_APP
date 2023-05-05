@@ -27,7 +27,6 @@ android {
             useSupportLibrary = true
         }
 
-
         buildTypes {
 
             release {
@@ -80,31 +79,25 @@ android {
         implementation(libs.navigation.compose)
         implementation(libs.koin.core)
         implementation(libs.koin.android)
-        implementation("io.insert-koin:koin-androidx-compose:3.4.0")
-        implementation("io.ktor:ktor-client-okhttp:2.3.0")
+        implementation(libs.koin.androidx.compose)
+        implementation(libs.ktor.client.okhttp)
         implementation(libs.ktor.client.core)
         implementation(libs.ktor.client.cio)
-        implementation("io.ktor:ktor-client-json:2.3.0")
-        implementation("io.ktor:ktor-client-serialization:2.3.0")
-        implementation("io.ktor:ktor-serialization-kotlinx-json:2.3.0")
-        implementation("io.ktor:ktor-client-logging:2.3.0")
-        implementation("io.ktor:ktor-server-cors:2.3.0")
-        implementation("io.ktor:ktor-client-gson:2.3.0")
-        implementation("io.ktor:ktor-client-content-negotiation:2.3.0")
-        implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.0")
+        implementation(libs.ktor.client.json)
+        implementation(libs.ktor.client.serialization)
+        implementation(libs.ktor.serialization.kotlinx.json)
+        implementation(libs.ktor.client.logging)
+        implementation(libs.ktor.server.cors)
+        implementation(libs.ktor.client.gson)
+        implementation(libs.ktor.client.content.negotiation)
+        implementation(libs.kotlinx.serialization.json)
         implementation(libs.coilCompose)
-        val paging_version = "3.1.1"
-        implementation("androidx.paging:paging-runtime:$paging_version")
-        // alternatively - without Android dependencies for tests
-        testImplementation("androidx.paging:paging-common:$paging_version")
-        // optional - RxJava2 support
-        implementation("androidx.paging:paging-rxjava2:$paging_version")
-        // optional - RxJava3 support
-        implementation("androidx.paging:paging-rxjava3:$paging_version")
-        // optional - Guava ListenableFuture support
-        implementation("androidx.paging:paging-guava:$paging_version")
-        // optional - Jetpack Compose integration
-        implementation("androidx.paging:paging-compose:1.0.0-alpha18")
+        implementation(libs.paging.runtime)
+        testImplementation(libs.paging.common)
+        implementation(libs.paging.rxjava2)
+        implementation(libs.paging.rxjava3)
+        implementation(libs.paging.guava)
+        implementation(libs.paging.compose)
 
     }
 }

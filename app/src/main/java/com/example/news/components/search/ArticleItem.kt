@@ -13,8 +13,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
 import com.example.news.R
 import com.example.news.data.network.Article
@@ -26,7 +26,7 @@ fun NewsItem(
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(8.dp),
+            .padding(dimensionResource(id = R.dimen.wight_8dp)),
         verticalAlignment = Alignment.CenterVertically
     ) {
         val painter = rememberAsyncImagePainter(article.fields.thumbnail)
@@ -34,9 +34,9 @@ fun NewsItem(
             painter = painter,
             contentDescription = stringResource(R.string.new_image),
             modifier = Modifier
-                .height(100.dp)
-                .width(100.dp)
-                .padding(end = 16.dp),
+                .height(dimensionResource(id = R.dimen.height_100dp))
+                .width(dimensionResource(id = R.dimen.wight_100dp))
+                .padding(end = dimensionResource(id = R.dimen.padding_16dp)),
             contentScale = ContentScale.Crop
         )
         Column(
