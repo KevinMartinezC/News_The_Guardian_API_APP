@@ -4,8 +4,6 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
@@ -27,7 +25,8 @@ fun BottomNavGraph(
     val searchViewModel: SearchViewModel = getViewModel()
     val articles = searchViewModel.articlesFlow.collectAsLazyPagingItems()
     val isLoading = remember { mutableStateOf(false) }
-
+    val saveSelectedFilter = searchViewModel::saveSelectedFilter
+    val selectedFilter = searchViewModel.selectedFilter
     LaunchedEffect(articles.loadState.refresh) {
         isLoading.value = articles.loadState.refresh is LoadState.Loading
     }
@@ -43,6 +42,8 @@ fun BottomNavGraph(
                 articles = articles,
                 isLoading = isLoading.value,
                 searchArticle = searchViewModel::searchArticles,
+                saveSelectedFilter = saveSelectedFilter,
+                selectedFilter = selectedFilter
             )
         }
         composable(route = BottomNavItem.Favorite.route) {

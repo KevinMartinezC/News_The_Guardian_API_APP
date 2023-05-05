@@ -98,6 +98,15 @@ android {
         implementation(libs.paging.rxjava3)
         implementation(libs.paging.guava)
         implementation(libs.paging.compose)
+        implementation ("androidx.datastore:datastore-preferences:1.0.0")
+        // optional - RxJava2 support
+        implementation("androidx.datastore:datastore-preferences-rxjava2:1.0.0")
+        // optional - RxJava3 support
+        implementation("androidx.datastore:datastore-preferences-rxjava3:1.0.0")
+        implementation("androidx.datastore:datastore-preferences-core:1.0.0")
+        implementation("androidx.compose.runtime:runtime:1.4.3")
+        implementation("androidx.compose.runtime:runtime-livedata:1.4.3")
+        implementation("androidx.compose.runtime:runtime-rxjava2:1.4.3")
 
     }
 }

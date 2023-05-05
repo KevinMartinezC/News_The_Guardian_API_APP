@@ -7,7 +7,6 @@ import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
@@ -19,14 +18,14 @@ import com.example.news.data.network.Filter
 @Composable
 fun FilterDropdown(
     filters: List<Filter>,
-    selectedFilter: MutableState<Filter>,
+    selectedFilter: Filter,
     onFilterSelected: (Filter) -> Unit
 ) {
     val filtersMenuExpanded = remember { mutableStateOf(false) }
 
     Box {
         Button(onClick = { filtersMenuExpanded.value = !filtersMenuExpanded.value }) {
-            Text(selectedFilter.value.filterName.ifEmpty { stringResource(R.string.select_a_filter) })
+            Text(selectedFilter.filterName.ifEmpty { stringResource(R.string.select_a_filter) })
         }
         DropdownMenu(
             expanded = filtersMenuExpanded.value,
@@ -35,7 +34,6 @@ fun FilterDropdown(
         ) {
             filters.forEach { filter ->
                 DropdownMenuItem(onClick = {
-                    selectedFilter.value = filter
                     filtersMenuExpanded.value = false
                     onFilterSelected(filter)
                 }, text = {

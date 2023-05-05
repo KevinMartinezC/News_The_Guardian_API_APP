@@ -8,6 +8,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
@@ -20,6 +22,7 @@ import com.example.news.R
 import com.example.news.components.search.model.generateFilters
 import com.example.news.data.network.Article
 import com.example.news.data.network.Filter
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 
 @Composable
@@ -28,19 +31,20 @@ fun SearchScreen(
     articles: LazyPagingItems<Article>,
     isLoading: Boolean,
     searchArticle: (String, Filter) -> Unit,
+    saveSelectedFilter: (Filter) -> Unit,
+    selectedFilter: Flow<Filter>
 ) {
-
     val query = remember { mutableStateOf("") }
     val coroutineScope = rememberCoroutineScope()
-    val selectedFilter = remember { mutableStateOf(Filter("")) }
     val filters = remember { generateFilters() }
+    val initialSelectedFilter by selectedFilter.collectAsState(initial = Filter(""))
 
     Column(modifier = modifier) {
         SearchField(
             query = query,
             onSearch = {
                 coroutineScope.launch {
-                    searchArticle(query.value, selectedFilter.value)
+                    searchArticle(query.value, initialSelectedFilter)
                 }
             }
         )
@@ -51,13 +55,13 @@ fun SearchScreen(
                 .padding(dimensionResource(id = R.dimen.padding_8dp)),
             verticalAlignment = Alignment.CenterVertically
         ) {
-
             Text(stringResource(R.string.filters))
             Spacer(modifier = Modifier.width(dimensionResource(id = R.dimen.wight_8dp)))
             FilterDropdown(
                 filters = filters,
-                selectedFilter = selectedFilter,
+                selectedFilter = initialSelectedFilter,
                 onFilterSelected = { filter ->
+                    saveSelectedFilter(filter)
                     coroutineScope.launch { searchArticle(query.value, filter) }
                 }
             )
@@ -65,5 +69,7 @@ fun SearchScreen(
         ArticleList(articles = articles, isLoading = isLoading)
     }
 }
+
+
 
 
