@@ -2,6 +2,7 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     kotlin("plugin.serialization") version "1.6.10"
+    id("kotlin-parcelize")
 }
 
 android {
@@ -98,15 +99,13 @@ android {
         implementation(libs.paging.rxjava3)
         implementation(libs.paging.guava)
         implementation(libs.paging.compose)
-        implementation ("androidx.datastore:datastore-preferences:1.0.0")
-        // optional - RxJava2 support
-        implementation("androidx.datastore:datastore-preferences-rxjava2:1.0.0")
-        // optional - RxJava3 support
-        implementation("androidx.datastore:datastore-preferences-rxjava3:1.0.0")
-        implementation("androidx.datastore:datastore-preferences-core:1.0.0")
-        implementation("androidx.compose.runtime:runtime:1.4.3")
-        implementation("androidx.compose.runtime:runtime-livedata:1.4.3")
-        implementation("androidx.compose.runtime:runtime-rxjava2:1.4.3")
+        implementation (libs.datastore.preferences)
+        implementation(libs.androidx.datastore.preferences.rxjava2)
+        implementation(libs.androidx.datastore.preferences.rxjava3)
+        implementation(libs.androidx.datastore.preferences.core)
+        implementation(libs.androidx.runtime)
+        implementation(libs.androidx.runtime.livedata)
+        implementation(libs.androidx.runtime.rxjava2)
 
     }
 }

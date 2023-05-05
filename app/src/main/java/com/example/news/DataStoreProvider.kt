@@ -20,19 +20,15 @@ class DataStoreProvider(context: Context) {
         val FILTER_KEY = stringPreferencesKey("filter")
     }
 
-
     suspend fun saveSelectedFilter(filter: Filter) {
         dataStore.edit { preferences ->
             preferences[FILTER_KEY] = filter.filterName
-            Log.d("DataStore", "Saved filter: ${filter.filterName}") // Add this log
-
         }
     }
 
     fun getSelectedFilter(): Flow<Filter> {
         return dataStore.data.map { preferences ->
             val filterName = preferences[FILTER_KEY] ?: ""
-            Log.d("DataStore", "Loaded filter: $filterName") // Add this log
             Filter(filterName)
         }
     }
