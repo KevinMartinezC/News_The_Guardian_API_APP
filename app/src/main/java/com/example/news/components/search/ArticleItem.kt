@@ -1,6 +1,7 @@
 package com.example.news.components.search
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -15,18 +16,25 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
+import androidx.navigation.NavHostController
 import coil.compose.rememberAsyncImagePainter
 import com.example.news.R
 import com.example.news.data.network.Article
+import java.net.URLEncoder
 
 @Composable
 fun NewsItem(
     article: Article,
+    navController: NavHostController
+
 ) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(dimensionResource(id = R.dimen.wight_8dp)),
+            .padding(dimensionResource(id = R.dimen.wight_8dp))
+            .clickable {
+                navController.navigate("detail/${URLEncoder.encode(article.webUrl, "UTF-8")}")
+            },
         verticalAlignment = Alignment.CenterVertically
     ) {
         val painter = rememberAsyncImagePainter(article.fields.thumbnail)

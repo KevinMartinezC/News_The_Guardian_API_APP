@@ -21,3 +21,5 @@ sealed class BottomNavItem(
         icon = Icons.Default.Star
     )
 }
+
+

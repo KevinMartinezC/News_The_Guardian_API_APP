@@ -19,6 +19,7 @@ fun generateFilters(): List<Filter> {
     val tagFilters = tags.map { tag -> Filter("Tag: $tag", tag = tag) }
 
     return sectionFilters + typeFilters + tagFilters
+
 }
 
 object ConstantFilter{

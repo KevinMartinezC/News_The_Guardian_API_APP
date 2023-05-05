@@ -9,6 +9,7 @@ import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.navigation.NavHostController
 import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.items
@@ -18,7 +19,9 @@ import com.example.news.data.network.Article
 @Composable
 fun ArticleList(
     articles: LazyPagingItems<Article>,
-    isLoading: Boolean
+    isLoading: Boolean,
+    navController: NavHostController
+
 ) {
     if (isLoading) {
         CircularProgressIndicator(
@@ -30,7 +33,10 @@ fun ArticleList(
         LazyColumn(modifier = Modifier.fillMaxSize()) {
             items(articles) { article ->
                 article?.let {
-                    NewsItem(article = it)
+                    NewsItem(
+                        article = it,
+                        navController = navController
+                    )
                 }
             }
             articles.apply {

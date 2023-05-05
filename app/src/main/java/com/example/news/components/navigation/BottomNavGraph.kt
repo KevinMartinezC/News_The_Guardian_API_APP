@@ -8,10 +8,13 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.navArgument
 import androidx.paging.LoadState
 import androidx.paging.compose.collectAsLazyPagingItems
+import com.example.news.components.detail.DetailScreen
 import com.example.news.components.favorite.FavoriteScreen
 import com.example.news.components.search.SearchScreen
 import com.example.news.components.search.viewmodel.SearchViewModel
@@ -43,11 +46,19 @@ fun BottomNavGraph(
                 isLoading = isLoading.value,
                 searchArticle = searchViewModel::searchArticles,
                 saveSelectedFilter = saveSelectedFilter,
-                selectedFilter = selectedFilter
+                selectedFilter = selectedFilter,
+                navController = navController
             )
         }
         composable(route = BottomNavItem.Favorite.route) {
             FavoriteScreen(modifier = Modifier.padding(contentPadding))
+        }
+        composable(
+            route = "detail/{url}",
+            arguments = listOf(navArgument("url") { type = NavType.StringType })
+        ) { backStackEntry ->
+            val url = backStackEntry.arguments?.getString("url") ?: ""
+            DetailScreen(url = url, modifier = Modifier.padding(contentPadding))
         }
     }
 }
