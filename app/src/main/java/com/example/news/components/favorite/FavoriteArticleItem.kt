@@ -9,12 +9,15 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.pager.PagerState
+import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material3.Card
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
@@ -23,8 +26,11 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.layout
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import coil.compose.rememberAsyncImagePainter
+import com.example.moviesvapp.ui.theme.MyApplicationTheme
 import com.example.news.R
 import com.example.news.components.favorite.model.local.FavoriteArticle
 import java.net.URLEncoder
@@ -121,6 +127,33 @@ fun FavoriteArticleItem(
                     tint = Color.White
                 )
             }
+        }
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+@OptIn(ExperimentalFoundationApi::class)
+fun FavoriteArticleItemPreview() {
+    MyApplicationTheme {
+        Surface(color = MaterialTheme.colorScheme.background) {
+            val sampleFavoriteArticle = FavoriteArticle(
+                id ="example",
+                webTitle = "Sample Article",
+                thumbnail = "https://example.com/sample-thumbnail1.jpg",
+                webUrl = "https://example.com/sample-article"
+            )
+
+            val pagerState = rememberPagerState()
+            val navController = rememberNavController()
+
+            FavoriteArticleItem(
+                favoriteArticle = sampleFavoriteArticle,
+                pagerState = pagerState,
+                currentPage = 0,
+                removeFromFavorites = { /* Do nothing in preview */ },
+                navController = navController
+            )
         }
     }
 }

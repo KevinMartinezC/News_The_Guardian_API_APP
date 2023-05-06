@@ -2,6 +2,7 @@ package com.example.news
 
 import android.app.Application
 import androidx.room.Room
+import com.example.news.App.Companion.DATABASE_NAME
 import com.example.news.components.favorite.viewmodel.FavoritesViewModel
 import com.example.news.components.search.viewmodel.SearchViewModel
 import com.example.news.components.favorite.model.local.NewsDatabase
@@ -25,6 +26,9 @@ class App : Application() {
             modules(appModule)
         }
     }
+    companion object{
+        const val DATABASE_NAME = "news_database"
+    }
 }
 
 val appModule = module {
@@ -37,7 +41,7 @@ val appModule = module {
         Room.databaseBuilder(
             androidContext(),
             NewsDatabase::class.java,
-            "news_database"
+            DATABASE_NAME
         ).build()
     }
     single { get<NewsDatabase>().favoriteArticleDao() }

@@ -11,6 +11,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import com.example.news.R
 import com.example.news.data.network.Filter
 
@@ -42,4 +43,13 @@ fun FilterDropdown(
             }
         }
     }
+}
+
+@Preview
+@Composable
+fun FilterDropdownPreview() {
+    val filters = listOf(Filter("Filter 1"), Filter("Filter 2"), Filter("Filter 3"))
+    val selectedFilter = Filter("Filter 1")
+    val onFilterSelected: (Filter) -> Unit = {}
+    FilterDropdown(filters, selectedFilter, onFilterSelected)
 }

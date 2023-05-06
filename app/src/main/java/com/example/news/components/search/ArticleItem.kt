@@ -21,10 +21,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import coil.compose.rememberAsyncImagePainter
+import com.example.moviesvapp.ui.theme.MyApplicationTheme
 import com.example.news.R
 import com.example.news.data.network.Article
+import com.example.news.data.network.Fields
 import java.net.URLEncoder
 
 private const val WEIGHT = 1f
@@ -81,6 +85,34 @@ fun NewsItem(
                     onToggleFavorite(article)
                 }
                 )
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun NewsItemPreview() {
+    MyApplicationTheme {
+        val sampleArticle = Article(
+            id = "sample-id",
+            type = "sample-type",
+            sectionId = "sample-sectionId",
+            sectionName = "sample-sectionName",
+            webPublicationDate = "2021-09-01T00:00:00Z",
+            webTitle = "Sample News Title",
+            webUrl = "https://www.example.com",
+            apiUrl = "https://www.example.com/sample_api_url",
+            fields = Fields(thumbnail = "https://www.example.com/sample_thumbnail.jpg")
+        )
+        val favoriteArticle = setOf<String>()
+        val onToggleFavorite: (Article) -> Unit = {}
+        val navController = rememberNavController()
+
+        NewsItem(
+            article = sampleArticle,
+            favoriteArticle = favoriteArticle,
+            onToggleFavorite = onToggleFavorite,
+            navController = navController
         )
     }
 }

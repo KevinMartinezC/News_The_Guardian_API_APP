@@ -15,10 +15,13 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.example.moviesvapp.ui.theme.MyApplicationTheme
 import com.example.news.components.favorite.model.local.FavoriteArticle
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 
 const val CARD_WIDTH_FACTOR = 0.7f
@@ -73,3 +76,29 @@ fun FavoriteScreen(
 }
 
 
+@Preview(showBackground = true)
+@Composable
+fun FavoriteScreenPreview() {
+    val sampleFavoriteArticles = listOf(
+        FavoriteArticle(
+            id = "1",
+            webTitle = "Sample Article 1",
+            thumbnail = "https://example.com/sample-thumbnail1.jpg",
+            webUrl = "https://example.com/sample-article1"
+        ),
+        FavoriteArticle(
+            id = "2",
+            webTitle = "Sample Article 2",
+            thumbnail = "https://example.com/sample-thumbnail2.jpg",
+            webUrl = "https://example.com/sample-article2"
+        )
+    )
+    val favoriteArticlesFlow: StateFlow<List<FavoriteArticle>> = MutableStateFlow(sampleFavoriteArticles)
+    val navController = rememberNavController()
+
+    FavoriteScreen(
+        favoriteArticlesFlow = favoriteArticlesFlow,
+        removeFromFavorites = { /* Do nothing in preview */ },
+        navController = navController
+    )
+}
