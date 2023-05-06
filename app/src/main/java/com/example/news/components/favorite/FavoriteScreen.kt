@@ -25,7 +25,8 @@ import kotlinx.coroutines.flow.StateFlow
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun FavoriteScreen(
-    favoriteArticlesFlow: StateFlow<List<FavoriteArticle>>
+    favoriteArticlesFlow: StateFlow<List<FavoriteArticle>>,
+    removeFromFavorites: (String) -> Unit
 
 ) {
     val favoriteArticles by favoriteArticlesFlow.collectAsState(initial = emptyList())
@@ -60,7 +61,9 @@ fun FavoriteScreen(
                     pagerState = pagerState,
                     currentPage = page,
                     cardWidth = cardWidth,
-                    cardHeight = cardHeight
+                    cardHeight = cardHeight,
+                    removeFromFavorites = { article -> removeFromFavorites(article.id) }
+
                 )
             }
         }

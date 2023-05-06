@@ -57,7 +57,8 @@ fun BottomNavGraph(
         }
         composable(route = BottomNavItem.Favorite.route) {
             FavoriteScreen(
-                favoriteArticlesFlow = searchViewModel.favoriteArticlesFlow
+                favoriteArticlesFlow = searchViewModel.favoriteArticlesFlow,
+                removeFromFavorites = searchViewModel::removeFromFavorites
             )
         }
 
