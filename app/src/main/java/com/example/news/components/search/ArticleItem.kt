@@ -7,7 +7,12 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.filled.FavoriteBorder
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -16,6 +21,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import coil.compose.rememberAsyncImagePainter
 import com.example.news.R
@@ -25,15 +31,26 @@ import java.net.URLEncoder
 @Composable
 fun NewsItem(
     article: Article,
+    favoriteArticle: Set<String>,
+    onToggleFavorite: (Article) -> Unit,
     navController: NavHostController
 
 ) {
+    val isFavorite = favoriteArticle.contains(article.id)
+
     Row(
         modifier = Modifier
             .fillMaxWidth()
             .padding(dimensionResource(id = R.dimen.wight_8dp))
             .clickable {
-                navController.navigate("detail/${URLEncoder.encode(article.webUrl, "UTF-8")}")
+                navController.navigate(
+                    "detail/${
+                        URLEncoder.encode(
+                            article.webUrl,
+                            "UTF-8"
+                        )
+                    }"
+                )
             },
         verticalAlignment = Alignment.CenterVertically
     ) {
@@ -48,12 +65,21 @@ fun NewsItem(
             contentScale = ContentScale.Crop
         )
         Column(
-            modifier = Modifier
+            modifier = Modifier.weight(1f)
         ) {
             Text(
                 article.webTitle, style = MaterialTheme.typography.bodyLarge
             )
-
         }
+        Icon(
+            imageVector = if (isFavorite) Icons.Filled.Favorite else Icons.Filled.FavoriteBorder,
+            contentDescription = "Favorite article icon",
+            modifier = Modifier
+                .size(24.dp)
+                .clickable(onClick = {
+                    onToggleFavorite(article)
+                }
+                )
+        )
     }
 }

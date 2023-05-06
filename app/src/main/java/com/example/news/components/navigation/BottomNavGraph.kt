@@ -4,6 +4,8 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
@@ -33,7 +35,8 @@ fun BottomNavGraph(
     LaunchedEffect(articles.loadState.refresh) {
         isLoading.value = articles.loadState.refresh is LoadState.Loading
     }
-    //val uiState by  searchViewModel.uiState.collectAsState()
+    val uiState by searchViewModel.uiState.collectAsState()
+
 
     NavHost(
         navController = navController,
@@ -47,17 +50,22 @@ fun BottomNavGraph(
                 searchArticle = searchViewModel::searchArticles,
                 saveSelectedFilter = saveSelectedFilter,
                 selectedFilter = selectedFilter,
-                navController = navController
+                navController = navController,
+                uiState = uiState,
+                onToggleFavorite = { article -> searchViewModel.addToFavorites(article) }
             )
         }
         composable(route = BottomNavItem.Favorite.route) {
-            FavoriteScreen(modifier = Modifier.padding(contentPadding))
+            FavoriteScreen(
+                favoriteArticlesFlow = searchViewModel.favoriteArticlesFlow
+            )
         }
+
         composable(
             route = "detail/{url}",
             arguments = listOf(navArgument("url") { type = NavType.StringType })
         ) { backStackEntry ->
-            val url = backStackEntry.arguments?.getString("url") ?: ""
+            val url = backStackEntry.arguments?.getString("url").orEmpty()
             DetailScreen(url = url, modifier = Modifier.padding(contentPadding))
         }
     }

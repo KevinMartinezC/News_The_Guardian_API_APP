@@ -18,6 +18,9 @@ androidxTestExtJUnit = "1.1.5"
 espressoCore = "3.5.1"
 material3 = "1.1.0-rc01"
 coilComposeVersion = "2.3.0"
+roomRuntimeVersion = "2.5.1"
+roomCompilerVersion = "2.5.1"
+roomKtxVersion = "2.5.1"
 
 [libraries]
 androidx-datastore-preferences-core = { module = "androidx.datastore:datastore-preferences-core", version.ref = "datastorePreferences" }
@@ -63,7 +66,14 @@ uiTestJUnit4 = { module = "androidx.compose.ui:ui-test-junit4", version.ref = "c
 uiTooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "compose" }
 uiTestManifest = { module = "androidx.compose.ui:ui-test-manifest", version.ref = "compose" }
 coilCompose = { module = "io.coil-kt:coil-compose", version.ref = "coilComposeVersion" }
+roomRuntime = { module = "androidx.room:room-runtime", version.ref = "roomRuntimeVersion" }
+roomCompiler = { module = "androidx.room:room-compiler", version.ref = "roomCompilerVersion" }
+roomKtx = { module = "androidx.room:room-ktx", version.ref = "roomKtxVersion" }
 
 [plugins]
 
 [bundles]
+room = [
+    "roomRuntime",
+    "roomKtx"
+]

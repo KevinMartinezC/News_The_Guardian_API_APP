@@ -20,6 +20,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavHostController
 import androidx.paging.compose.LazyPagingItems
 import com.example.news.R
+import com.example.news.components.favorite.UiState
 import com.example.news.components.search.model.generateFilters
 import com.example.news.data.network.Article
 import com.example.news.data.network.Filter
@@ -29,6 +30,8 @@ import kotlinx.coroutines.launch
 @Composable
 fun SearchScreen(
     modifier: Modifier = Modifier,
+    uiState: UiState,
+    onToggleFavorite: (Article) -> Unit,
     articles: LazyPagingItems<Article>,
     isLoading: Boolean,
     searchArticle: (String, Filter) -> Unit,
@@ -70,9 +73,12 @@ fun SearchScreen(
             )
         }
         ArticleList(
+            uiState = uiState,
+            onToggleFavorite = onToggleFavorite,
             articles = articles,
             isLoading = isLoading,
-            navController = navController)
+            navController = navController
+        )
     }
 }
 

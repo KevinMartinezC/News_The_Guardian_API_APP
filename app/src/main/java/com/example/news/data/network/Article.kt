@@ -1,7 +1,6 @@
 package com.example.news.data.network
 
-import android.os.Parcelable
-import kotlinx.parcelize.Parcelize
+
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -33,11 +32,6 @@ data class Article(
     val fields: Fields
 )
 
-
-@Parcelize
-data class Web(
-    val webUrl: String,
-) : Parcelable
 
 @Serializable
 data class Fields(

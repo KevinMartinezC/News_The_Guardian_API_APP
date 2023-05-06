@@ -13,15 +13,17 @@ import androidx.navigation.NavHostController
 import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.items
+import com.example.news.components.favorite.UiState
 import com.example.news.data.network.Article
 
 
 @Composable
 fun ArticleList(
+    uiState: UiState,
+    onToggleFavorite: (Article) -> Unit,
     articles: LazyPagingItems<Article>,
     isLoading: Boolean,
     navController: NavHostController
-
 ) {
     if (isLoading) {
         CircularProgressIndicator(
@@ -35,7 +37,9 @@ fun ArticleList(
                 article?.let {
                     NewsItem(
                         article = it,
-                        navController = navController
+                        navController = navController,
+                        favoriteArticle = uiState.favoriteArticle,
+                        onToggleFavorite = onToggleFavorite
                     )
                 }
             }
