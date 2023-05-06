@@ -8,7 +8,6 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.pager.PagerState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
@@ -17,19 +16,18 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.layout
-import androidx.compose.ui.unit.Dp
-import androidx.compose.ui.unit.dp
+import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.res.stringResource
+import androidx.navigation.NavController
 import coil.compose.rememberAsyncImagePainter
-import com.example.news.data.local.FavoriteArticle
+import com.example.news.R
+import com.example.news.components.favorite.model.local.FavoriteArticle
+import java.net.URLEncoder
 import kotlin.math.absoluteValue
 
 
@@ -39,18 +37,23 @@ private const val PAGE_OFFSET_LOWER_BOUND = 0f
 private const val PAGE_OFFSET_UPPER_BOUND = 1f
 private const val INITIAL_FRACTION_VALUE = 1f
 private const val LERP_START_WEIGHT = 1
+private const val TRANSPARENT_BLACK = 0.5f
+
+fun lerp(start: Float, stop: Float, fraction: Float): Float {
+    return (LERP_START_WEIGHT - fraction) * start + fraction * stop
+}
+
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun FavoriteArticleItem(
     favoriteArticle: FavoriteArticle,
     pagerState: PagerState,
     currentPage: Int,
-    cardWidth: Dp,
-    cardHeight: Dp,
-    removeFromFavorites: (FavoriteArticle) -> Unit
+    modifier: Modifier = Modifier,
+    removeFromFavorites: (FavoriteArticle) -> Unit,
+    navController: NavController
 ) {
     val painter = rememberAsyncImagePainter(model = favoriteArticle.thumbnail)
-    var openBottomSheet by rememberSaveable { mutableStateOf(false) }
 
     val pageOffset = (
             (pagerState.currentPage - currentPage) + pagerState.currentPageOffsetFraction
@@ -66,23 +69,33 @@ fun FavoriteArticleItem(
     )
 
     Card(
-        modifier = Modifier
-            .size(cardWidth, cardHeight)
+        modifier = modifier
             .scale(scale)
             .animateContentSize()
             .clickable(onClick = {
-                openBottomSheet = !openBottomSheet
-            }),
+                navController.navigate(
+                    "detail/${
+                        URLEncoder.encode(
+                            favoriteArticle.webUrl,
+                            "UTF-8"
+                        )
+                    }"
+                )
+            }
+            ),
     ) {
         Box(
             modifier = Modifier.fillMaxSize()
         ) {
             Image(
                 painter = painter,
-                contentDescription = "Article Poster",
+                contentDescription = stringResource(R.string.article_poster),
                 modifier = Modifier.fillMaxSize(),
                 contentScale = ContentScale.Crop
             )
+
+            val spacing = dimensionResource(id = R.dimen.spacing_8dp)
+
             IconButton(
                 onClick = { removeFromFavorites(favoriteArticle) },
                 modifier = Modifier
@@ -90,24 +103,24 @@ fun FavoriteArticleItem(
                         val placeable = measurable.measure(constraints)
                         layout(placeable.width, placeable.height) {
                             placeable.place(
-                                x = constraints.maxWidth - placeable.width - 8.dp.roundToPx(),
-                                y = 8.dp.roundToPx()
+
+                                x = constraints.maxWidth - placeable.width - spacing.roundToPx(),
+                                y = spacing.roundToPx()
                             )
                         }
                     }
-                    .padding(8.dp)
-                    .background(color = Color.Black.copy(alpha = 0.5f), shape = CircleShape)
+                    .padding(dimensionResource(id = R.dimen.padding_8dp))
+                    .background(
+                        color = Color.Black.copy(alpha = TRANSPARENT_BLACK),
+                        shape = CircleShape
+                    )
             ) {
                 Icon(
                     imageVector = Icons.Default.Delete,
-                    contentDescription = "Remove from favorites",
+                    contentDescription = stringResource(R.string.remove_from_favorites),
                     tint = Color.White
                 )
             }
         }
     }
-}
-
-fun lerp(start: Float, stop: Float, fraction: Float): Float {
-    return (LERP_START_WEIGHT - fraction) * start + fraction * stop
 }

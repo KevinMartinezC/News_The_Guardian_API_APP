@@ -17,10 +17,11 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.ImeAction
 import com.example.news.R
 
+private const val UNFOCUS_BORDER_COLOR = 0.5f
+
 @Composable
 fun SearchField(
-    query: MutableState<String>,
-    onSearch: () -> Unit
+    query: MutableState<String>, onSearch: () -> Unit
 ) {
     OutlinedTextField(
         value = query.value,
@@ -37,7 +38,8 @@ fun SearchField(
         textStyle = TextStyle(color = MaterialTheme.colorScheme.onSurface),
         colors = OutlinedTextFieldDefaults.colors(
             focusedBorderColor = MaterialTheme.colorScheme.primary,
-            unfocusedBorderColor = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f),
+            unfocusedBorderColor = MaterialTheme.colorScheme.onSurface
+                .copy(alpha = UNFOCUS_BORDER_COLOR),
         )
     )
 }

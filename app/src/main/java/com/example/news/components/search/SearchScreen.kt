@@ -21,7 +21,7 @@ import androidx.navigation.NavHostController
 import androidx.paging.compose.LazyPagingItems
 import com.example.news.R
 import com.example.news.components.favorite.UiState
-import com.example.news.components.search.model.generateFilters
+import com.example.news.components.search.model.utils.generateFilters
 import com.example.news.data.network.Article
 import com.example.news.data.network.Filter
 import kotlinx.coroutines.flow.Flow

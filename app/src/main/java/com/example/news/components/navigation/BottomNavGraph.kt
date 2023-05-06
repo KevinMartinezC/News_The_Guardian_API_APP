@@ -18,9 +18,13 @@ import androidx.paging.LoadState
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.example.news.components.detail.DetailScreen
 import com.example.news.components.favorite.FavoriteScreen
+import com.example.news.components.favorite.viewmodel.FavoritesViewModel
 import com.example.news.components.search.SearchScreen
 import com.example.news.components.search.viewmodel.SearchViewModel
 import org.koin.androidx.compose.getViewModel
+
+private const val NAV_ARGUMENT = "url"
+private const val ROUTE_DETAIL = "detail/{url}"
 
 @Composable
 fun BottomNavGraph(
@@ -28,20 +32,22 @@ fun BottomNavGraph(
     contentPadding: PaddingValues
 ) {
     val searchViewModel: SearchViewModel = getViewModel()
+    val favoritesViewModel: FavoritesViewModel = getViewModel()
     val articles = searchViewModel.articlesFlow.collectAsLazyPagingItems()
     val isLoading = remember { mutableStateOf(false) }
     val saveSelectedFilter = searchViewModel::saveSelectedFilter
     val selectedFilter = searchViewModel.selectedFilter
+    val uiState by favoritesViewModel.uiState.collectAsState()
+
     LaunchedEffect(articles.loadState.refresh) {
         isLoading.value = articles.loadState.refresh is LoadState.Loading
     }
-    val uiState by searchViewModel.uiState.collectAsState()
-
 
     NavHost(
         navController = navController,
         startDestination = BottomNavItem.Search.route
     ) {
+
         composable(route = BottomNavItem.Search.route) {
             SearchScreen(
                 modifier = Modifier.padding(contentPadding),
@@ -52,21 +58,23 @@ fun BottomNavGraph(
                 selectedFilter = selectedFilter,
                 navController = navController,
                 uiState = uiState,
-                onToggleFavorite = { article -> searchViewModel.addToFavorites(article) }
+                onToggleFavorite = { article -> favoritesViewModel.addToFavorites(article) }
             )
         }
+
         composable(route = BottomNavItem.Favorite.route) {
             FavoriteScreen(
-                favoriteArticlesFlow = searchViewModel.favoriteArticlesFlow,
-                removeFromFavorites = searchViewModel::removeFromFavorites
+                favoriteArticlesFlow = favoritesViewModel.favoriteArticlesFlow,
+                removeFromFavorites = favoritesViewModel::removeFromFavorites,
+                navController = navController,
             )
         }
 
         composable(
-            route = "detail/{url}",
-            arguments = listOf(navArgument("url") { type = NavType.StringType })
+            route = ROUTE_DETAIL,
+            arguments = listOf(navArgument(NAV_ARGUMENT) { type = NavType.StringType })
         ) { backStackEntry ->
-            val url = backStackEntry.arguments?.getString("url").orEmpty()
+            val url = backStackEntry.arguments?.getString(NAV_ARGUMENT).orEmpty()
             DetailScreen(url = url, modifier = Modifier.padding(contentPadding))
         }
     }

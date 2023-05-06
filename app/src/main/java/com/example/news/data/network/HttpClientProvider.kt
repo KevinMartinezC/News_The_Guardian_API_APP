@@ -6,11 +6,9 @@ import io.ktor.client.engine.okhttp.OkHttp
 import io.ktor.client.plugins.DefaultRequest
 import io.ktor.client.plugins.HttpTimeout
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
-import io.ktor.client.request.parameter
 import io.ktor.http.ContentType
 import io.ktor.http.URLProtocol
 import io.ktor.http.contentType
-import io.ktor.http.parameters
 import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
 
@@ -33,12 +31,14 @@ class HttpClientProvider {
                 host = BuildConfig.GUARDIAN_API_BASE_URL
                 url {
                     protocol = URLProtocol.HTTPS
-                    parameters.append("api-key", BuildConfig.GUARDIAN_API_KEY)
-
-
+                    parameters.append(API_KEY_NAME, BuildConfig.GUARDIAN_API_KEY)
                 }
                 contentType(ContentType.Application.Json)
             }
         }
+    }
+
+    companion object{
+        const val API_KEY_NAME = "api-key"
     }
 }

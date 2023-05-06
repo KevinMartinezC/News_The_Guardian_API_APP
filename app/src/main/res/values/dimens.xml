@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="spacing_32dp">32dp</dimen>
+    <dimen name="spacing_8dp">8dp</dimen>
     <dimen name="height_8dp">8dp</dimen>
     <dimen name="height_16dp">16dp</dimen>
     <dimen name="height_200dp">200dp</dimen>
@@ -12,4 +13,6 @@
     <dimen name="padding_56dp">56dp</dimen>
     <dimen name="padding_64dp">64dp</dimen>
     <dimen name="size_275">275dp</dimen>
+    <dimen name="size_24">24dp</dimen>
+
 </resources>

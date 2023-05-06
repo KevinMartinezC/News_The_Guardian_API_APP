@@ -4,6 +4,7 @@ import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.PagerDefaults
 import androidx.compose.foundation.pager.PagerSnapDistance
@@ -15,22 +16,24 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
 import com.example.moviesvapp.ui.theme.MyApplicationTheme
-import com.example.news.components.favorite.FavoriteScreenConstants.CARD_HEIGHT_FACTOR
-import com.example.news.components.favorite.FavoriteScreenConstants.CARD_WIDTH_FACTOR
-import com.example.news.components.favorite.FavoriteScreenConstants.PAGER_SNAP_DISTANCE
-import com.example.news.data.local.FavoriteArticle
+import com.example.news.components.favorite.model.local.FavoriteArticle
 import kotlinx.coroutines.flow.StateFlow
+
+const val CARD_WIDTH_FACTOR = 0.7f
+const val CARD_HEIGHT_FACTOR = 0.7f
+const val PAGER_SNAP_DISTANCE = 4
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun FavoriteScreen(
     favoriteArticlesFlow: StateFlow<List<FavoriteArticle>>,
-    removeFromFavorites: (String) -> Unit
+    removeFromFavorites: (String) -> Unit,
+    navController: NavHostController
 
 ) {
     val favoriteArticles by favoriteArticlesFlow.collectAsState(initial = emptyList())
-
 
     MyApplicationTheme {
         val pagerState = rememberPagerState()
@@ -60,19 +63,13 @@ fun FavoriteScreen(
                     favoriteArticle = favoriteArticle,
                     pagerState = pagerState,
                     currentPage = page,
-                    cardWidth = cardWidth,
-                    cardHeight = cardHeight,
-                    removeFromFavorites = { article -> removeFromFavorites(article.id) }
-
+                    modifier = Modifier.size(cardWidth, cardHeight),
+                    removeFromFavorites = { article -> removeFromFavorites(article.id) },
+                    navController = navController
                 )
             }
         }
     }
 }
 
-object FavoriteScreenConstants {
-    const val CARD_WIDTH_FACTOR = 0.7f
-    const val CARD_HEIGHT_FACTOR = 0.7f
-    const val PAGER_SNAP_DISTANCE = 4
-}
 

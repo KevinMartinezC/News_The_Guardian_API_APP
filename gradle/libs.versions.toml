@@ -26,11 +26,11 @@ roomKtxVersion = "2.5.1"
 androidx-datastore-preferences-core = { module = "androidx.datastore:datastore-preferences-core", version.ref = "datastorePreferences" }
 androidx-datastore-preferences-rxjava2 = { module = "androidx.datastore:datastore-preferences-rxjava2", version.ref = "datastorePreferences" }
 androidx-datastore-preferences-rxjava3 = { module = "androidx.datastore:datastore-preferences-rxjava3", version.ref = "datastorePreferences" }
+datastore-preferences = { module = "androidx.datastore:datastore-preferences", version.ref = "datastorePreferences" }
 androidx-runtime = { module = "androidx.compose.runtime:runtime", version.ref = "runtime" }
 androidx-runtime-livedata = { module = "androidx.compose.runtime:runtime-livedata", version.ref = "runtime" }
 androidx-runtime-rxjava2 = { module = "androidx.compose.runtime:runtime-rxjava2", version.ref = "runtime" }
 coreKtx = { module = "androidx.core:core-ktx", version.ref = "coreKtx" }
-datastore-preferences = { module = "androidx.datastore:datastore-preferences", version.ref = "datastorePreferences" }
 koin-android = { module = "io.insert-koin:koin-android", version.ref = "koin" }
 koin-androidx-compose = { module = "io.insert-koin:koin-androidx-compose", version.ref = "koin" }
 koin-core = { module = "io.insert-koin:koin-core", version.ref = "koin" }
@@ -76,4 +76,44 @@ roomKtx = { module = "androidx.room:room-ktx", version.ref = "roomKtxVersion" }
 room = [
     "roomRuntime",
     "roomKtx"
+]
+runtime = [
+    "androidx-runtime",
+    "androidx-runtime-livedata",
+    "androidx-runtime-rxjava2"
+]
+datastore = [
+    "datastore-preferences",
+    "androidx-datastore-preferences-core",
+    "androidx-datastore-preferences-rxjava2",
+    "androidx-datastore-preferences-rxjava3"
+]
+paging = [
+    "paging-common",
+    "paging-compose",
+    "paging-guava",
+    "paging-runtime",
+    "paging-rxjava2",
+    "paging-rxjava3"
+]
+ktor = [
+    "ktor-client-cio",
+    "ktor-client-content-negotiation",
+    "ktor-client-core",
+    "ktor-client-gson",
+    "ktor-client-json",
+    "ktor-client-logging",
+    "ktor-client-okhttp",
+    "ktor-client-serialization",
+    "ktor-serialization-kotlinx-json","ktor-server-cors"
+]
+koin = [
+    "koin-android",
+    "koin-androidx-compose",
+    "koin-core"
+]
+ui-compose = [
+    "ui",
+    "uiGraphics",
+    "uiToolingPreview",
 ]

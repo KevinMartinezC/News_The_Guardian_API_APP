@@ -1,4 +1,4 @@
-package com.example.news.data.repository
+package com.example.news.components.search.model.repository
 
 import androidx.paging.PagingData
 import com.example.news.data.network.Article

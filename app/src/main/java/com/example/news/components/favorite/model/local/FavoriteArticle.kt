@@ -1,4 +1,4 @@
-package com.example.news.data.local
+package com.example.news.components.favorite.model.local
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

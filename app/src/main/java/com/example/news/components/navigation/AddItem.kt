@@ -28,7 +28,6 @@ fun RowScope.AddItem(
                 imageVector = screen.icon,
                 contentDescription = stringResource(R.string.navigation_icon),
                 tint = MaterialTheme.colorScheme.primary
-
             )
         },
         selected = currentDestination?.hierarchy?.any {

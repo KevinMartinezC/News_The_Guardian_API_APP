@@ -21,12 +21,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import coil.compose.rememberAsyncImagePainter
 import com.example.news.R
 import com.example.news.data.network.Article
 import java.net.URLEncoder
+
+private const val WEIGHT = 1f
 
 @Composable
 fun NewsItem(
@@ -65,7 +66,7 @@ fun NewsItem(
             contentScale = ContentScale.Crop
         )
         Column(
-            modifier = Modifier.weight(1f)
+            modifier = Modifier.weight(WEIGHT)
         ) {
             Text(
                 article.webTitle, style = MaterialTheme.typography.bodyLarge
@@ -73,9 +74,9 @@ fun NewsItem(
         }
         Icon(
             imageVector = if (isFavorite) Icons.Filled.Favorite else Icons.Filled.FavoriteBorder,
-            contentDescription = "Favorite article icon",
+            contentDescription = stringResource(R.string.favorite_article_icon),
             modifier = Modifier
-                .size(24.dp)
+                .size(dimensionResource(id = R.dimen.size_24))
                 .clickable(onClick = {
                     onToggleFavorite(article)
                 }

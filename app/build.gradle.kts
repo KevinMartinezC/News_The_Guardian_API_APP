@@ -1,4 +1,5 @@
 plugins {
+
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("com.google.devtools.ksp")
@@ -6,7 +7,6 @@ plugins {
     id("kotlin-parcelize")
 
 }
-
 android {
     namespace = "com.example.news"
     compileSdk = 33
@@ -17,7 +17,8 @@ android {
             "GUARDIAN_API_BASE_URL",
             project.property("guardianApiBaseUrl").toString()
         )
-        buildConfigField("String", "GUARDIAN_API_KEY", "\"${project.property("guardianApiKey")}\"")
+        buildConfigField("String", "GUARDIAN_API_KEY",
+            "\"${project.property("guardianApiKey")}\"")
 
         applicationId = "com.example.news"
         minSdk = 24
@@ -68,9 +69,7 @@ android {
         implementation(libs.lifecycleRuntimeKtx)
         implementation(libs.activityCompose)
         implementation(platform(libs.composeBom))
-        implementation(libs.ui)
-        implementation(libs.uiGraphics)
-        implementation(libs.uiToolingPreview)
+        implementation(libs.bundles.ui.compose)
         implementation(libs.material3)
         testImplementation(libs.junit)
         androidTestImplementation(libs.androidxTestExtJUnit)
@@ -80,34 +79,13 @@ android {
         debugImplementation(libs.uiTooling)
         debugImplementation(libs.uiTestManifest)
         implementation(libs.navigation.compose)
-        implementation(libs.koin.core)
-        implementation(libs.koin.android)
-        implementation(libs.koin.androidx.compose)
-        implementation(libs.ktor.client.okhttp)
-        implementation(libs.ktor.client.core)
-        implementation(libs.ktor.client.cio)
-        implementation(libs.ktor.client.json)
-        implementation(libs.ktor.client.serialization)
-        implementation(libs.ktor.serialization.kotlinx.json)
-        implementation(libs.ktor.client.logging)
-        implementation(libs.ktor.server.cors)
-        implementation(libs.ktor.client.gson)
-        implementation(libs.ktor.client.content.negotiation)
+        implementation(libs.bundles.koin)
+        implementation(libs.bundles.ktor)
         implementation(libs.kotlinx.serialization.json)
         implementation(libs.coilCompose)
-        implementation(libs.paging.runtime)
-        testImplementation(libs.paging.common)
-        implementation(libs.paging.rxjava2)
-        implementation(libs.paging.rxjava3)
-        implementation(libs.paging.guava)
-        implementation(libs.paging.compose)
-        implementation (libs.datastore.preferences)
-        implementation(libs.androidx.datastore.preferences.rxjava2)
-        implementation(libs.androidx.datastore.preferences.rxjava3)
-        implementation(libs.androidx.datastore.preferences.core)
-        implementation(libs.androidx.runtime)
-        implementation(libs.androidx.runtime.livedata)
-        implementation(libs.androidx.runtime.rxjava2)
+        implementation(libs.bundles.paging)
+        implementation(libs.bundles.datastore)
+        implementation(libs.bundles.runtime)
         implementation(libs.bundles.room)
         ksp(libs.roomCompiler)
 
