@@ -21,11 +21,14 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.moviesvapp.ui.theme.MyApplicationTheme
 import com.example.news.components.favorite.model.local.FavoriteArticle
+import com.example.news.components.favorite.utils.isLandscape
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 
 const val CARD_WIDTH_FACTOR = 0.7f
 const val CARD_HEIGHT_FACTOR = 0.7f
+const val CARD_WIDTH_FACTOR_LANDSCAPE = 0.4f
+const val CARD_HEIGHT_FACTOR_LANDSCAPE = 0.5f
 const val PAGER_SNAP_DISTANCE = 4
 
 @OptIn(ExperimentalFoundationApi::class)
@@ -34,7 +37,6 @@ fun FavoriteScreen(
     favoriteArticlesFlow: StateFlow<List<FavoriteArticle>>,
     removeFromFavorites: (String) -> Unit,
     navController: NavHostController
-
 ) {
     val favoriteArticles by favoriteArticlesFlow.collectAsState(initial = emptyList())
 
@@ -47,8 +49,11 @@ fun FavoriteScreen(
 
         val screenWidth = LocalConfiguration.current.screenWidthDp.dp
         val screenHeight = LocalConfiguration.current.screenHeightDp.dp
-        val cardWidth = screenWidth * CARD_WIDTH_FACTOR
-        val cardHeight = screenHeight * CARD_HEIGHT_FACTOR
+        val isLandscape = isLandscape()
+        val cardWidthFactor = if (isLandscape) CARD_WIDTH_FACTOR_LANDSCAPE else CARD_WIDTH_FACTOR
+        val cardHeightFactor = if (isLandscape) CARD_HEIGHT_FACTOR_LANDSCAPE else CARD_HEIGHT_FACTOR
+        val cardWidth = screenWidth * cardWidthFactor
+        val cardHeight = screenHeight * cardHeightFactor
         val padding = (screenWidth - cardWidth) / 2
 
         Box(
@@ -76,29 +81,34 @@ fun FavoriteScreen(
 }
 
 
-@Preview(showBackground = true)
+@Preview
 @Composable
 fun FavoriteScreenPreview() {
-    val sampleFavoriteArticles = listOf(
+    val dummyFavoriteArticles = listOf(
         FavoriteArticle(
             id = "1",
-            webTitle = "Sample Article 1",
-            thumbnail = "https://example.com/sample-thumbnail1.jpg",
-            webUrl = "https://example.com/sample-article1"
+            webTitle = "Article 1",
+            thumbnail = "https://via.placeholder.com/150",
+            webUrl = "https://www.example.com/article1"
         ),
         FavoriteArticle(
             id = "2",
-            webTitle = "Sample Article 2",
-            thumbnail = "https://example.com/sample-thumbnail2.jpg",
-            webUrl = "https://example.com/sample-article2"
+            webTitle = "Article 2",
+            thumbnail = "https://via.placeholder.com/150",
+            webUrl = "https://www.example.com/article2"
+        ),
+        FavoriteArticle(
+            id = "3",
+            webTitle = "Article 3",
+            thumbnail = "https://via.placeholder.com/150",
+            webUrl = "https://www.example.com/article3"
         )
     )
-    val favoriteArticlesFlow: StateFlow<List<FavoriteArticle>> = MutableStateFlow(sampleFavoriteArticles)
-    val navController = rememberNavController()
+    val favoriteArticlesFlow = MutableStateFlow(dummyFavoriteArticles)
 
     FavoriteScreen(
         favoriteArticlesFlow = favoriteArticlesFlow,
-        removeFromFavorites = { /* Do nothing in preview */ },
-        navController = navController
+        removeFromFavorites = {  },
+        navController = rememberNavController()
     )
 }
