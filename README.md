@@ -1,6 +1,6 @@
-# 📚 @Composable News App  🌐
+# 📚 News App  🌐
 
-🎉 Welcome to @Composable News App! 📰 This is a modern, easy-to-use news application built with Jetpack Compose. Find the latest articles from The Guardian, save your favorite articles, and explore in detail.
+🎉 Welcome to  News App! 📰 This is a modern, easy-to-use news application built with Jetpack Compose. Find the latest articles from The Guardian, save your favorite articles, and explore in detail.
 
 ## 📱 Features
 
