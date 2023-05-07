@@ -25,7 +25,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import coil.compose.rememberAsyncImagePainter
-import com.example.moviesvapp.ui.theme.MyApplicationTheme
+import com.example.news.theme.MyApplicationTheme
 import com.example.news.R
 import com.example.news.data.network.Article
 import com.example.news.data.network.Fields
@@ -73,7 +73,9 @@ fun NewsItem(
             modifier = Modifier.weight(WEIGHT)
         ) {
             Text(
-                article.webTitle, style = MaterialTheme.typography.bodyLarge
+                text = article.webTitle,
+                style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.onSurface
             )
         }
         Icon(

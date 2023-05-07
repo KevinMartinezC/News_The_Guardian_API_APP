@@ -30,7 +30,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import coil.compose.rememberAsyncImagePainter
-import com.example.moviesvapp.ui.theme.MyApplicationTheme
+import com.example.news.theme.MyApplicationTheme
 import com.example.news.R
 import com.example.news.components.favorite.model.local.FavoriteArticle
 import java.net.URLEncoder

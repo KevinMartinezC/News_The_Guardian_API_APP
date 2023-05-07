@@ -1,4 +1,4 @@
-package com.example.moviesvapp.ui.theme
+package com.example.news.theme
 
 import android.app.Activity
 import android.os.Build
@@ -15,14 +15,14 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
 
-private val DarkColorScheme = darkColorScheme(
+private val darkColorScheme = darkColorScheme(
     primary = DarkPrimary,
     onPrimary = DarkOnPrimary,
     primaryContainer = DarkPrimaryContainer,
     onPrimaryContainer = DarkOnPrimaryContainer,
     secondary = DarkSecondary,
     onSecondary = DarkOnSecondary,
-    secondaryContainer = DarkOnSecondaryContainer,
+    secondaryContainer = DarkSecondaryContainer ,
     onSecondaryContainer = DarkOnSecondaryContainer,
     tertiary = DarkTertiary,
     onTertiary = DarkOnTertiary,
@@ -49,7 +49,7 @@ private val DarkColorScheme = darkColorScheme(
 )
 
 
-private val LightColorScheme = lightColorScheme(
+private val lightColorScheme = lightColorScheme(
     primary = PrimaryLight,
     onPrimary = OnPrimary,
     primaryContainer = PrimaryContainer,
@@ -94,8 +94,8 @@ fun MyApplicationTheme(
             if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
         }
 
-        darkTheme -> DarkColorScheme
-        else -> LightColorScheme
+        darkTheme -> darkColorScheme
+        else -> lightColorScheme
     }
     val view = LocalView.current
     if (!view.isInEditMode) {
@@ -106,6 +106,7 @@ fun MyApplicationTheme(
         }
     }
     MaterialTheme(
+
         colorScheme = colorScheme,
         typography = Typography,
         content = content

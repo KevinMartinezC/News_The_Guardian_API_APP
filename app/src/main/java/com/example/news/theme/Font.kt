@@ -1,13 +1,20 @@
-package com.example.moviesvapp.ui.theme
+package com.example.news.theme
 
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import com.example.news.R
 
-val NotoSerif = FontFamily(
-    Font(R.font.notoserif_regular),
-    Font(R.font.notoserif_italic, FontWeight.Light),
-    Font(R.font.notoserif_bold, FontWeight.Bold),
-    Font(R.font.notoserif_bolditalic, FontWeight.Bold)
+
+val Lato = FontFamily(
+    Font(R.font.lato_regular),
+    Font(R.font.lato_italic),
+    Font(R.font.lato_light, FontWeight.Light),
+    Font(R.font.lato_light_italic, FontWeight.Light),
+    Font(R.font.lato_thin, FontWeight.Thin),
+    Font(R.font.lato_thin_italic, FontWeight.Thin),
+    Font(R.font.lato_bold, FontWeight.Bold),
+    Font(R.font.lato_bold_italic, FontWeight.Bold),
+    Font(R.font.lato_black, FontWeight.Black),
+    Font(R.font.lato_black_italic, FontWeight.Black)
 )

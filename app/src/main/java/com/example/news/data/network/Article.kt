@@ -6,8 +6,10 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class Article(
+    @SerialName("id")
     val id: String,
 
+    @SerialName("type")
     val type: String,
 
     @SerialName("sectionId")
@@ -31,7 +33,6 @@ data class Article(
     @SerialName("fields")
     val fields: Fields
 )
-
 
 @Serializable
 data class Fields(
