@@ -22,7 +22,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.news.R
@@ -54,7 +53,9 @@ fun SearchField(
         modifier = Modifier
             .fillMaxWidth()
             .padding(dimensionResource(id = R.dimen.padding_8dp)),
-        textStyle = TextStyle(color = MaterialTheme.colorScheme.onSurface),
+        textStyle = MaterialTheme.typography.bodyLarge.copy(
+            color = MaterialTheme.colorScheme.onSurface
+        ),
         colors = OutlinedTextFieldDefaults.colors(
             focusedBorderColor = MaterialTheme.colorScheme.primary,
             unfocusedBorderColor = MaterialTheme.colorScheme.onSurface
@@ -70,7 +71,7 @@ fun SearchField(
                 Icon(
                     Icons.Default.Search,
                     contentDescription = stringResource(R.string.search_icon),
-                    tint = MaterialTheme.colorScheme.onSurface
+                    tint = MaterialTheme.colorScheme.primary
                 )
             }
         }

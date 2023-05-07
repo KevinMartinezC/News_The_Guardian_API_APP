@@ -3,8 +3,10 @@ package com.example.news.components.search
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
@@ -25,7 +27,13 @@ fun FilterDropdown(
     val filtersMenuExpanded = remember { mutableStateOf(false) }
 
     Box {
-        Button(onClick = { filtersMenuExpanded.value = !filtersMenuExpanded.value }) {
+        Button(
+            onClick = { filtersMenuExpanded.value = !filtersMenuExpanded.value },
+            colors = ButtonDefaults.buttonColors(
+                containerColor = MaterialTheme.colorScheme.primary,
+                contentColor = MaterialTheme.colorScheme.onPrimary
+            )
+        ) {
             Text(selectedFilter.filterName.ifEmpty { stringResource(R.string.select_a_filter) })
         }
         DropdownMenu(
@@ -38,7 +46,11 @@ fun FilterDropdown(
                     filtersMenuExpanded.value = false
                     onFilterSelected(filter)
                 }, text = {
-                    Text(text = filter.filterName)
+                    Text(
+                        text = filter.filterName,
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = MaterialTheme.colorScheme.onSurface
+                    )
                 })
             }
         }

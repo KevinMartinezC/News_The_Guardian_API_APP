@@ -19,7 +19,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
-import com.example.moviesvapp.ui.theme.MyApplicationTheme
+import com.example.news.theme.MyApplicationTheme
 import com.example.news.components.favorite.model.local.FavoriteArticle
 import com.example.news.components.favorite.utils.isLandscape
 import kotlinx.coroutines.flow.MutableStateFlow
