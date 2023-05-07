@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">News</string>
+    <string name="navigation_icon">Navigation Icon</string>
+    <string name="new_image">New Image</string>
+    <string name="filters">Filters:</string>
+    <string name="select_a_filter">Select a filter</string>
+    <string name="search">Search</string>
+    <string name="remove_from_favorites">Remove from favorites</string>
+    <string name="article_poster">Article Poster</string>
+    <string name="favorite_article_icon">Favorite article icon</string>
+    <string name="search_icon">search icon</string>
+</resources>

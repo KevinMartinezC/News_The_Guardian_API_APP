@@ -1,0 +1,119 @@
+[versions]
+coreKtx = "1.10.0"
+datastorePreferences = "1.0.0"
+koin = "3.4.0"
+kotlinxSerializationJson = "1.5.0"
+ktorClientCore = "2.3.0"
+lifecycleRuntimeKtx = "2.6.1"
+activityCompose = "1.7.1"
+composeBom = "2023.04.01"
+navigationCompose = "2.5.3"
+pagingCompose = "1.0.0-alpha18"
+pagingRuntime = "3.1.1"
+runtime = "1.4.3"
+ui = "1.4.2"
+compose = "1.4.2"
+junit = "4.13.2"
+androidxTestExtJUnit = "1.1.5"
+espressoCore = "3.5.1"
+material3 = "1.1.0-rc01"
+coilComposeVersion = "2.3.0"
+roomRuntimeVersion = "2.5.1"
+roomCompilerVersion = "2.5.1"
+roomKtxVersion = "2.5.1"
+
+[libraries]
+androidx-datastore-preferences-core = { module = "androidx.datastore:datastore-preferences-core", version.ref = "datastorePreferences" }
+androidx-datastore-preferences-rxjava2 = { module = "androidx.datastore:datastore-preferences-rxjava2", version.ref = "datastorePreferences" }
+androidx-datastore-preferences-rxjava3 = { module = "androidx.datastore:datastore-preferences-rxjava3", version.ref = "datastorePreferences" }
+datastore-preferences = { module = "androidx.datastore:datastore-preferences", version.ref = "datastorePreferences" }
+androidx-runtime = { module = "androidx.compose.runtime:runtime", version.ref = "runtime" }
+androidx-runtime-livedata = { module = "androidx.compose.runtime:runtime-livedata", version.ref = "runtime" }
+androidx-runtime-rxjava2 = { module = "androidx.compose.runtime:runtime-rxjava2", version.ref = "runtime" }
+coreKtx = { module = "androidx.core:core-ktx", version.ref = "coreKtx" }
+koin-android = { module = "io.insert-koin:koin-android", version.ref = "koin" }
+koin-androidx-compose = { module = "io.insert-koin:koin-androidx-compose", version.ref = "koin" }
+koin-core = { module = "io.insert-koin:koin-core", version.ref = "koin" }
+kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxSerializationJson" }
+ktor-client-cio = { module = "io.ktor:ktor-client-cio", version.ref = "ktorClientCore" }
+ktor-client-content-negotiation = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktorClientCore" }
+ktor-client-core = { module = "io.ktor:ktor-client-core", version.ref = "ktorClientCore" }
+ktor-client-gson = { module = "io.ktor:ktor-client-gson", version.ref = "ktorClientCore" }
+ktor-client-json = { module = "io.ktor:ktor-client-json", version.ref = "ktorClientCore" }
+ktor-client-logging = { module = "io.ktor:ktor-client-logging", version.ref = "ktorClientCore" }
+ktor-client-okhttp = { module = "io.ktor:ktor-client-okhttp", version.ref = "ktorClientCore" }
+ktor-client-serialization = { module = "io.ktor:ktor-client-serialization", version.ref = "ktorClientCore" }
+ktor-serialization-kotlinx-json = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktorClientCore" }
+ktor-server-cors = { module = "io.ktor:ktor-server-cors", version.ref = "ktorClientCore" }
+lifecycleRuntimeKtx = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "lifecycleRuntimeKtx" }
+activityCompose = { module = "androidx.activity:activity-compose", version.ref = "activityCompose" }
+composeBom = { module = "androidx.compose:compose-bom", version.ref = "composeBom" }
+navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigationCompose" }
+paging-common = { module = "androidx.paging:paging-common", version.ref = "pagingRuntime" }
+paging-compose = { module = "androidx.paging:paging-compose", version.ref = "pagingCompose" }
+paging-guava = { module = "androidx.paging:paging-guava", version.ref = "pagingRuntime" }
+paging-runtime = { module = "androidx.paging:paging-runtime", version.ref = "pagingRuntime" }
+paging-rxjava2 = { module = "androidx.paging:paging-rxjava2", version.ref = "pagingRuntime" }
+paging-rxjava3 = { module = "androidx.paging:paging-rxjava3", version.ref = "pagingRuntime" }
+ui = { module = "androidx.compose.ui:ui", version.ref = "compose" }
+uiGraphics = { module = "androidx.compose.ui:ui-graphics", version.ref = "compose" }
+uiToolingPreview = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "compose" }
+material3 = { module = "androidx.compose.material3:material3", version.ref = "material3" }
+junit = { module = "junit:junit", version.ref = "junit" }
+androidxTestExtJUnit = { module = "androidx.test.ext:junit", version.ref = "androidxTestExtJUnit" }
+espressoCore = { module = "androidx.test.espresso:espresso-core", version.ref = "espressoCore" }
+uiTestJUnit4 = { module = "androidx.compose.ui:ui-test-junit4", version.ref = "compose" }
+uiTooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "compose" }
+uiTestManifest = { module = "androidx.compose.ui:ui-test-manifest", version.ref = "compose" }
+coilCompose = { module = "io.coil-kt:coil-compose", version.ref = "coilComposeVersion" }
+roomRuntime = { module = "androidx.room:room-runtime", version.ref = "roomRuntimeVersion" }
+roomCompiler = { module = "androidx.room:room-compiler", version.ref = "roomCompilerVersion" }
+roomKtx = { module = "androidx.room:room-ktx", version.ref = "roomKtxVersion" }
+
+[plugins]
+
+[bundles]
+room = [
+    "roomRuntime",
+    "roomKtx"
+]
+runtime = [
+    "androidx-runtime",
+    "androidx-runtime-livedata",
+    "androidx-runtime-rxjava2"
+]
+datastore = [
+    "datastore-preferences",
+    "androidx-datastore-preferences-core",
+    "androidx-datastore-preferences-rxjava2",
+    "androidx-datastore-preferences-rxjava3"
+]
+paging = [
+    "paging-common",
+    "paging-compose",
+    "paging-guava",
+    "paging-runtime",
+    "paging-rxjava2",
+    "paging-rxjava3"
+]
+ktor = [
+    "ktor-client-cio",
+    "ktor-client-content-negotiation",
+    "ktor-client-core",
+    "ktor-client-gson",
+    "ktor-client-json",
+    "ktor-client-logging",
+    "ktor-client-okhttp",
+    "ktor-client-serialization",
+    "ktor-serialization-kotlinx-json","ktor-server-cors"
+]
+koin = [
+    "koin-android",
+    "koin-androidx-compose",
+    "koin-core"
+]
+ui-compose = [
+    "ui",
+    "uiGraphics",
+    "uiToolingPreview",
+]
