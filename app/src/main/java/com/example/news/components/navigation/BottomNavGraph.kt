@@ -67,7 +67,8 @@ fun BottomNavGraph(
                 favoriteArticlesFlow = favoritesViewModel.favoriteArticlesFlow,
                 removeFromFavorites = favoritesViewModel::removeFromFavorites,
                 navController = navController,
-            )
+
+                )
         }
 
         composable(

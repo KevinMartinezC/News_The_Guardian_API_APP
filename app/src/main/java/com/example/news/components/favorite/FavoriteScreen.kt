@@ -12,6 +12,7 @@ import androidx.compose.foundation.pager.PagerDefaults
 import androidx.compose.foundation.pager.PagerSnapDistance
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -36,13 +37,15 @@ import kotlinx.coroutines.flow.StateFlow
 
 const val PAGER_SNAP_DISTANCE = 4
 
+
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun FavoriteScreen(
     favoriteArticlesFlow: StateFlow<List<FavoriteArticle>>,
     removeFromFavorites: (String) -> Unit,
-    navController: NavHostController
-) {
+    navController: NavHostController,
+
+    ) {
     val favoriteArticles by favoriteArticlesFlow.collectAsState(initial = emptyList())
 
     MyApplicationTheme {
@@ -56,48 +59,53 @@ fun FavoriteScreen(
         val horizontalPadding = getHorizontalPadding(isLandscape = isLandscape)
         val verticalPadding = getVerticalPadding(isLandscape = isLandscape)
 
-        FavoriteScreenTopBar(navController = navController)
-
-        Box(
-            modifier = Modifier.fillMaxSize(),
-            contentAlignment = Alignment.Center
-        ) {
-            HorizontalPager(
-                pageCount = if (favoriteArticles.isEmpty()) 1 else favoriteArticles.size,
-                state = pagerState,
-                flingBehavior = fling,
-                contentPadding = PaddingValues(
-                    start = LocalConfiguration.current.screenWidthDp.dp * horizontalPadding,
-                    end = LocalConfiguration.current.screenWidthDp.dp * horizontalPadding
-                )
-            ) { page ->
-                if (favoriteArticles.isEmpty()) {
-                    Text(
-                        text = stringResource(R.string.no_favorites_added_yet),
-                        style = MaterialTheme.typography.headlineSmall,
-                        color = MaterialTheme.colorScheme.onSurface
-                    )
-                } else {
-                    val favoriteArticle = favoriteArticles[page]
-                    FavoriteArticleItem(
-                        favoriteArticle = favoriteArticle,
-                        pagerState = pagerState,
-                        currentPage = page,
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .fillMaxHeight()
-                            .padding(
-                                top =
-                                LocalConfiguration.current.screenHeightDp.dp * verticalPadding,
-                                bottom =
-                                LocalConfiguration.current.screenHeightDp.dp * verticalPadding
-                            ),
-                        removeFromFavorites = { article -> removeFromFavorites(article.id) },
-                        navController = navController
-                    )
+        Scaffold(
+            topBar = { FavoriteScreenTopBar(navController = navController) },
+            content = { paddingValues ->
+                Box(
+                    modifier = Modifier
+                        .padding(paddingValues = paddingValues)
+                        .fillMaxSize(),
+                    contentAlignment = Alignment.Center
+                ) {
+                    HorizontalPager(
+                        pageCount = if (favoriteArticles.isEmpty()) 1 else favoriteArticles.size,
+                        state = pagerState,
+                        flingBehavior = fling,
+                        contentPadding = PaddingValues(
+                            start = LocalConfiguration.current.screenWidthDp.dp * horizontalPadding,
+                            end = LocalConfiguration.current.screenWidthDp.dp * horizontalPadding
+                        )
+                    ) { page ->
+                        if (favoriteArticles.isEmpty()) {
+                            Text(
+                                text = stringResource(R.string.no_favorites_added_yet),
+                                style = MaterialTheme.typography.headlineSmall,
+                                color = MaterialTheme.colorScheme.onSurface
+                            )
+                        } else {
+                            val favoriteArticle = favoriteArticles[page]
+                            FavoriteArticleItem(
+                                favoriteArticle = favoriteArticle,
+                                pagerState = pagerState,
+                                currentPage = page,
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .fillMaxHeight()
+                                    .padding(
+                                        top =
+                                        LocalConfiguration.current.screenHeightDp.dp * verticalPadding,
+                                        bottom =
+                                        LocalConfiguration.current.screenHeightDp.dp * verticalPadding
+                                    ),
+                                removeFromFavorites = { article -> removeFromFavorites(article.id) },
+                                navController = navController
+                            )
+                        }
+                    }
                 }
             }
-        }
+        )
     }
 }
 
