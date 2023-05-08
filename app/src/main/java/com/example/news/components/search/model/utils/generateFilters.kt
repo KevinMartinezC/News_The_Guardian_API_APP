@@ -1,6 +1,6 @@
 package com.example.news.components.search.model.utils
 
-import com.example.news.data.network.Filter
+import com.example.news.data.network.model.Filter
 
 const val SECTION_POLITICS = "politics"
 const val SECTION_TECHNOLOGY = "technology"

@@ -14,7 +14,7 @@ import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.items
 import com.example.news.components.favorite.UiState
-import com.example.news.data.network.Article
+import com.example.news.data.network.model.Article
 
 
 @Composable

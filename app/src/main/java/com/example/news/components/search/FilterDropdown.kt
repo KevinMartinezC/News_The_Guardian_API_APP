@@ -15,7 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.news.R
-import com.example.news.data.network.Filter
+import com.example.news.data.network.model.Filter
 
 
 @Composable

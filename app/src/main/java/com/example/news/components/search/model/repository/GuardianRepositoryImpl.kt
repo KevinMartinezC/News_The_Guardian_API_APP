@@ -3,10 +3,10 @@ package com.example.news.components.search.model.repository
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
-import com.example.news.data.network.Article
-import com.example.news.data.network.Filter
+import com.example.news.data.network.model.Article
+import com.example.news.data.network.model.Filter
 import com.example.news.data.network.GuardianApiService
-import com.example.news.data.network.GuardianPagingSource
+import com.example.news.data.network.utils.GuardianPagingSource
 import kotlinx.coroutines.flow.Flow
 
 class GuardianRepositoryImpl(private val apiService: GuardianApiService) : GuardianRepository {

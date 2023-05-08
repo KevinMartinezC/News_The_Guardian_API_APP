@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.news.components.favorite.UiState
 import com.example.news.components.favorite.model.local.FavoriteArticle
-import com.example.news.data.network.Article
+import com.example.news.data.network.model.Article
 import com.example.news.components.favorite.model.repository.FavoriteArticlesRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
