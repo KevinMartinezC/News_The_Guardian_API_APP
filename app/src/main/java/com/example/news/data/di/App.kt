@@ -1,8 +1,8 @@
-package com.example.news
+package com.example.news.data.di
 
 import android.app.Application
 import androidx.room.Room
-import com.example.news.App.Companion.DATABASE_NAME
+import com.example.news.data.di.App.Companion.DATABASE_NAME
 import com.example.news.components.favorite.viewmodel.FavoritesViewModel
 import com.example.news.components.search.viewmodel.SearchViewModel
 import com.example.news.components.favorite.model.local.NewsDatabase
@@ -13,6 +13,7 @@ import com.example.news.components.search.model.repository.GuardianRepository
 import com.example.news.components.search.model.repository.GuardianRepositoryImpl
 import com.example.news.components.favorite.model.repository.FavoriteArticlesRepository
 import com.example.news.components.favorite.model.repository.FavoriteArticlesRepositoryImpl
+import com.example.news.components.search.model.datastore.DataStoreProvider
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.context.GlobalContext.startKoin

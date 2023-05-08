@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import com.example.news.DataStoreProvider
+import com.example.news.components.search.model.datastore.DataStoreProvider
 import com.example.news.data.network.model.Article
 import com.example.news.data.network.model.Filter
 import com.example.news.components.search.model.repository.GuardianRepository

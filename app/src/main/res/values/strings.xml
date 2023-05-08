@@ -10,4 +10,6 @@
     <string name="favorite_article_icon">Favorite article icon</string>
     <string name="search_icon">search icon</string>
     <string name="no_favorites_added_yet">No favorites added yet.</string>
+    <string name="back_to_search">back to search</string>
+    <string name="favorite_news">Favorite News</string>
 </resources>
