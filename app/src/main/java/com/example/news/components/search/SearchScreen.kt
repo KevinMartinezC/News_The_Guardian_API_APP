@@ -22,8 +22,8 @@ import androidx.paging.compose.LazyPagingItems
 import com.example.news.R
 import com.example.news.components.favorite.UiState
 import com.example.news.components.search.model.utils.generateFilters
-import com.example.news.data.network.Article
-import com.example.news.data.network.Filter
+import com.example.news.data.network.model.Article
+import com.example.news.data.network.model.Filter
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 

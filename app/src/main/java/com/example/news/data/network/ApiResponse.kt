@@ -1,5 +1,6 @@
 package com.example.news.data.network
 
+import com.example.news.data.network.model.Article
 import kotlinx.serialization.Serializable
 
 @Serializable

@@ -27,8 +27,8 @@ import androidx.navigation.compose.rememberNavController
 import coil.compose.rememberAsyncImagePainter
 import com.example.news.theme.MyApplicationTheme
 import com.example.news.R
-import com.example.news.data.network.Article
-import com.example.news.data.network.Fields
+import com.example.news.data.network.model.Article
+import com.example.news.data.network.model.Fields
 import java.net.URLEncoder
 
 private const val WEIGHT = 1f

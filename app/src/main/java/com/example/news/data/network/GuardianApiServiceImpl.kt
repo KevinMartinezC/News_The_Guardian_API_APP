@@ -2,6 +2,7 @@ package com.example.news.data.network
 
 
 import com.example.news.data.network.GuardianApiServiceImpl.Companion.PAGE_SIZE
+import com.example.news.data.network.model.Filter
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.request.HttpRequestBuilder

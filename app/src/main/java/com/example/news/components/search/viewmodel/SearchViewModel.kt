@@ -5,8 +5,8 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.example.news.DataStoreProvider
-import com.example.news.data.network.Article
-import com.example.news.data.network.Filter
+import com.example.news.data.network.model.Article
+import com.example.news.data.network.model.Filter
 import com.example.news.components.search.model.repository.GuardianRepository
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow

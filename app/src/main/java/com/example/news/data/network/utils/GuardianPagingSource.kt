@@ -1,7 +1,10 @@
-package com.example.news.data.network
+package com.example.news.data.network.utils
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
+import com.example.news.data.network.model.Article
+import com.example.news.data.network.model.Filter
+import com.example.news.data.network.GuardianApiService
 
 class GuardianPagingSource(
     private val guardianApiService: GuardianApiService,
