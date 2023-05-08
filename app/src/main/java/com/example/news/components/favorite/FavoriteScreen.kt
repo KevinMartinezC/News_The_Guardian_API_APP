@@ -23,9 +23,9 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.news.R
-import com.example.news.theme.MyApplicationTheme
 import com.example.news.components.favorite.model.local.FavoriteArticle
 import com.example.news.components.favorite.utils.isLandscape
+import com.example.news.theme.MyApplicationTheme
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 
@@ -59,6 +59,8 @@ fun FavoriteScreen(
         val cardWidth = screenWidth * cardWidthFactor
         val cardHeight = screenHeight * cardHeightFactor
         val padding = (screenWidth - cardWidth) / 2
+
+        FavoriteScreenTopBar(navController = navController)
 
         Box(
             modifier = Modifier.fillMaxSize(),
