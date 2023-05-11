@@ -24,7 +24,7 @@ class DataStoreProvider(context: Context) {
 
     fun getSelectedFilter(): Flow<Filter> {
         return dataStore.data.map { preferences ->
-            val filterName = preferences[FILTER_KEY] ?: ""
+            val filterName = preferences[FILTER_KEY].orEmpty()
             Filter(filterName)
         }
     }

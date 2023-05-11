@@ -16,19 +16,8 @@ class FavoritesViewModel(
     private val favoriteArticlesRepository: FavoriteArticlesRepository
 ) : ViewModel() {
 
-    private val _favoriteArticlesFlow = MutableStateFlow<List<FavoriteArticle>>(emptyList())
+    private val _favoriteArticlesFlow = MutableStateFlow<List<FavoriteArticle>>(emptyList())// mover al UISTATE
     val favoriteArticlesFlow = _favoriteArticlesFlow.asStateFlow()
-
-    init {
-        viewModelScope.launch {
-            favoriteArticlesRepository.favoriteArticles
-                .collect { favoriteArticles ->
-                    val favoriteArticleId = favoriteArticles.map { it.id }.toSet()
-                    _uiState.update { it.copy(favoriteArticle = favoriteArticleId) }
-                    _favoriteArticlesFlow.value = favoriteArticles
-                }
-        }
-    }
 
     private val _uiState = MutableStateFlow(
         UiState(
@@ -38,6 +27,16 @@ class FavoritesViewModel(
 
     val uiState = _uiState.asStateFlow()
 
+    init {// siempre abajo de las val
+        viewModelScope.launch {
+            favoriteArticlesRepository.favoriteArticles
+                .collect { favoriteArticles ->
+                    val favoriteArticleId = favoriteArticles.map { it.id }.toSet()
+                    _uiState.update { it.copy(favoriteArticle = favoriteArticleId) }
+                    _favoriteArticlesFlow.value = favoriteArticles
+                }
+        }
+    }
     fun addToFavorites(article: Article) {
         viewModelScope.launch(Dispatchers.IO) {
             val favoriteArticle = FavoriteArticle(

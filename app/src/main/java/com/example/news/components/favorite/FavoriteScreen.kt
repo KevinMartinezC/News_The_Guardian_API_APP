@@ -43,12 +43,10 @@ const val PAGER_SNAP_DISTANCE = 4
 fun FavoriteScreen(
     favoriteArticlesFlow: StateFlow<List<FavoriteArticle>>,
     removeFromFavorites: (String) -> Unit,
-    navController: NavHostController,
-
-    ) {
+    navController: NavHostController
+) {
     val favoriteArticles by favoriteArticlesFlow.collectAsState(initial = emptyList())
 
-    MyApplicationTheme {
         val pagerState = rememberPagerState()
         val fling = PagerDefaults.flingBehavior(
             state = pagerState,
@@ -68,11 +66,11 @@ fun FavoriteScreen(
                         .fillMaxSize(),
                     contentAlignment = Alignment.Center
                 ) {
-                    HorizontalPager(
+                    HorizontalPager(//MOVE TO CONSTANT
                         pageCount = if (favoriteArticles.isEmpty()) 1 else favoriteArticles.size,
                         state = pagerState,
                         flingBehavior = fling,
-                        contentPadding = PaddingValues(
+                        contentPadding = PaddingValues(//MOVE IT AND DO IT DIRECTLLY
                             start = LocalConfiguration.current.screenWidthDp.dp * horizontalPadding,
                             end = LocalConfiguration.current.screenWidthDp.dp * horizontalPadding
                         )
@@ -92,7 +90,7 @@ fun FavoriteScreen(
                                 modifier = Modifier
                                     .fillMaxWidth()
                                     .fillMaxHeight()
-                                    .padding(
+                                    .padding(//MOVE IT
                                         top =
                                         LocalConfiguration.current.screenHeightDp.dp * verticalPadding,
                                         bottom =
@@ -107,12 +105,12 @@ fun FavoriteScreen(
             }
         )
     }
-}
+
 
 
 @Preview
 @Composable
-fun FavoriteScreenPreview() {
+fun FavoriteScreenPreview() {//ALWATS ADD THEME INTO THE PREVIEW
     val dummyFavoriteArticles = listOf(
         FavoriteArticle(
             id = "1",

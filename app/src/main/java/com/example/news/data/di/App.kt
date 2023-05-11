@@ -32,7 +32,7 @@ class App : Application() {
     }
 }
 
-val appModule = module {
+val appModule = module {//mOVE IT TO ANOTHER FILE
 
     single { HttpClientProvider().createClient() }
     single<GuardianApiService> { GuardianApiServiceImpl(get()) }

@@ -14,7 +14,7 @@ class GuardianRepositoryImpl(private val apiService: GuardianApiService) : Guard
     private fun createPager(query: String, filter: Filter): Pager<Int, Article> {
         return Pager(
             config = PagingConfig(
-                pageSize = 20,
+                pageSize = 20,//MOVE IT IN A CONSTANT
                 enablePlaceholders = false
             ),
             pagingSourceFactory = { GuardianPagingSource(apiService, query, filter) }

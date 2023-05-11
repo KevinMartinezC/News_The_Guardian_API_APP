@@ -109,7 +109,6 @@ fun FavoriteArticleItem(
                         val placeable = measurable.measure(constraints)
                         layout(placeable.width, placeable.height) {
                             placeable.place(
-
                                 x = constraints.maxWidth - placeable.width - spacing.roundToPx(),
                                 y = spacing.roundToPx()
                             )

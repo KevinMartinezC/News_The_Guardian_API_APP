@@ -42,16 +42,17 @@ fun FilterDropdown(
             modifier = Modifier.fillMaxWidth()
         ) {
             filters.forEach { filter ->
-                DropdownMenuItem(onClick = {
-                    filtersMenuExpanded.value = false
-                    onFilterSelected(filter)
-                }, text = {
-                    Text(
-                        text = filter.filterName,
-                        style = MaterialTheme.typography.bodyMedium,
-                        color = MaterialTheme.colorScheme.onSurface
-                    )
-                })
+                DropdownMenuItem(
+                    onClick = {
+                        filtersMenuExpanded.value = false
+                        onFilterSelected(filter)
+                    }, text = {
+                        Text(
+                            text = filter.filterName,
+                            style = MaterialTheme.typography.bodyMedium,
+                            color = MaterialTheme.colorScheme.onSurface
+                        )
+                    })
             }
         }
     }
@@ -59,7 +60,7 @@ fun FilterDropdown(
 
 @Preview
 @Composable
-fun FilterDropdownPreview() {
+fun FilterDropdownPreview() {//tHEME
     val filters = listOf(Filter("Filter 1"), Filter("Filter 2"), Filter("Filter 3"))
     val selectedFilter = Filter("Filter 1")
     val onFilterSelected: (Filter) -> Unit = {}

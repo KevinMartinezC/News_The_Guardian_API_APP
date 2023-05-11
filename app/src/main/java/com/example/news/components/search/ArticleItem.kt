@@ -48,7 +48,7 @@ fun NewsItem(
             .fillMaxWidth()
             .padding(dimensionResource(id = R.dimen.wight_8dp))
             .clickable {
-                navController.navigate(
+                navController.navigate(//MOVE TO A FUNTION
                     "detail/${
                         URLEncoder.encode(
                             article.webUrl,

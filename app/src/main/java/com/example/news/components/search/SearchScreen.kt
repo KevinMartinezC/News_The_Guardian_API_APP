@@ -81,7 +81,3 @@ fun SearchScreen(
         )
     }
 }
-
-
-
-

@@ -50,7 +50,7 @@ fun SearchField(
                 keyBoardController?.hide()
             }
         }),
-        modifier = Modifier
+        modifier = Modifier//Move it to the end
             .fillMaxWidth()
             .padding(dimensionResource(id = R.dimen.padding_8dp)),
         textStyle = MaterialTheme.typography.bodyLarge.copy(

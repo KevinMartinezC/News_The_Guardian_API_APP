@@ -23,7 +23,7 @@ class HttpClientProvider {
                 })
             }
             install(HttpTimeout){
-                requestTimeoutMillis = 60_000L
+                requestTimeoutMillis = 60_000L //mOVE IT IN A CONSTANT
                 connectTimeoutMillis = 60_000L
                 socketTimeoutMillis = 60_000L
             }

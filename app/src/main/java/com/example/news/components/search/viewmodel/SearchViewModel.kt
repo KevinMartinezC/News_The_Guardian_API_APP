@@ -31,7 +31,7 @@ class SearchViewModel(
         guardianRepository.searchArticles(query, filter)
     }.cachedIn(viewModelScope)
 
-    fun searchArticles(query: String, filter: Filter) {
+    fun searchArticles(query: String, filter: Filter) {//USE UPDATE INSTEAD THE VALUE
         _query.value = query
         _filter.value = filter
     }
